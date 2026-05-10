@@ -14,14 +14,14 @@ import lombok.Setter;
 public class MarcadorPersonalizado {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_marcador_personalizado")
     private Long id;
-
     @Column(name = "nombre", length = 50)
     private String nombre;
     @Column(name = "latitud",nullable = false)
-    private double latitud;
+    private Double latitud;
     @Column(name = "longitud",nullable = false)
-    private double longitud;
+    private Double longitud;
     @Column(name = "notas", length = 500)
     private String notas;
 

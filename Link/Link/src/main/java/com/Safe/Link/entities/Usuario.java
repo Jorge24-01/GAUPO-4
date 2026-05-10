@@ -17,6 +17,7 @@ public class Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_usuario")
     private Long id;
     @Column(name = "nombre",nullable = false,length = 100)
     private String nombre;
@@ -26,6 +27,8 @@ public class Usuario {
     private int edad;
     @Column(name = "correo", nullable = false, length = 150)
     private String correo;
+    @Column(name = "contrasena",nullable = false, length = 100)
+    private String contrasena;
     @Column(name = "telefono", nullable = false,length = 20)
     private String telefono;
     @Column(name = "tipo_usuario",nullable = false,length = 30)
@@ -33,5 +36,5 @@ public class Usuario {
     @Column(name = "distrito", length = 150)
     private String distrito;
     @Column(name = "fecha_registro",nullable = false)
-    private LocalDate fecha_registro;
+    private LocalDate fecha_registro = LocalDate.now();
 }

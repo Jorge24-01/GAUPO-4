@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface MarcadorPersonalizadoRepository extends JpaRepository<MarcadorPersonalizado,Long>{
-    @Query("SELECT m FROM MarcadorPersonalizado m WHERE m.usuario.id = :idUsuario ORDER BY m.id DESC ")
-    List<MarcadorPersonalizado>findByUsuarioId(@Param("idusuario")Long idusuario);
+public interface MarcadorPersonalizadoRepository extends JpaRepository<MarcadorPersonalizado, Long> {
+    @Query("SELECT m FROM MarcadorPersonalizado m WHERE m.usuario.id = :idUsuario ORDER BY m.id DESC")
+    List<MarcadorPersonalizado> findByUsuarioId(@Param("idUsuario") Long idUsuario);
 }

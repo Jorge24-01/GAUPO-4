@@ -16,6 +16,7 @@ public class Tarea {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_tarea")
     private Long id;
     @Column(name = "descripcion", nullable = false,length = 500)
     private String descripcion;

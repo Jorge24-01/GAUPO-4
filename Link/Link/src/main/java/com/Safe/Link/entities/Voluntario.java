@@ -15,11 +15,12 @@ public class Voluntario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_voluntario")
     private Long id;
     @Column(name = "especialidad", length = 100)
     private String especialidad;
     @Column(name = "disponible", nullable = false)
-    private boolean disponible;
+    private Boolean disponible;
 
     @OneToOne
     @JoinColumn(name = "id_usuario", nullable = false)

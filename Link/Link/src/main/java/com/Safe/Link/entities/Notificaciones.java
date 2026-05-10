@@ -16,11 +16,12 @@ import java.time.LocalDate;
 public class Notificaciones {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_notificaciones")
     private Long id;
     @Column(name = "tipo",nullable = false,length = 20)
     private String tipo;
     @Column(name = "leido", nullable = false)
-    private boolean leido;
+    private Boolean leido;
     @Column(name = "fecha_hora", nullable = false)
     private LocalDate fecha_hora;
 
