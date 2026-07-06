@@ -26,6 +26,10 @@ public class JwtFilter extends OncePerRequestFilter {
 
     @Override
     protected boolean shouldNotFilter(HttpServletRequest request) {
+        if (HttpMethod.OPTIONS.matches(request.getMethod())) {
+            return true;
+        }
+
         String path = getRequestPath(request);
         return isPublicPath(path) || isPublicGet(request.getMethod(), path);
     }
