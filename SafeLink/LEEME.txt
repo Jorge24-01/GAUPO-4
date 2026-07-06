@@ -1,0 +1,17 @@
+SafeLink Frontend - paquete limpio
+
+Cómo abrir:
+1. Descomprime este ZIP.
+2. Abre la carpeta safelink-frontend en WebStorm o VS Code.
+3. En terminal ejecuta:
+   npm install
+   ng serve
+
+Requisitos:
+- Node.js instalado.
+- Backend Spring Boot corriendo en http://localhost:8080 para login, mapa, kit, familia y admin.
+
+Notas:
+- Este ZIP no incluye node_modules, dist, .angular ni configuraciones temporales.
+- Es normal ejecutar npm install la primera vez.
+- Si el favicon no cambia, usar Ctrl + F5 o ventana incognito.

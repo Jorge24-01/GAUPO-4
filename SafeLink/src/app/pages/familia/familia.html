@@ -1,0 +1,82 @@
+<div class="familia-page">
+  <div class="familia-head">
+    <div>
+      <span>{{ 'familia.tituloPagina' | transloco }}</span>
+      <h1>{{ 'familia.tituloPagina' | transloco }}</h1>
+      <p>{{ 'familia.subtitulo' | transloco }}</p>
+    </div>
+  </div>
+
+  <div class="familia-grid">
+    <section class="familia-form">
+      <div class="form-card">
+        <h2>{{ 'familia.form.tituloTarjeta' | transloco }}</h2>
+        <p>{{ 'familia.form.descripcionTarjeta' | transloco }}</p>
+
+        <form [formGroup]="form" (ngSubmit)="agregarFamiliar()">
+          <mat-form-field appearance="outline" floatLabel="always" class="full family-field">
+            <mat-label>{{ 'familia.form.nombreLabel' | transloco }}</mat-label>
+            <input matInput formControlName="nombre" [placeholder]="'familia.form.nombrePlaceholder' | transloco"
+              [attr.aria-label]="'familia.form.nombreLabel' | transloco" />
+            @if (form.controls.nombre.touched && form.controls.nombre.errors?.['required']) {
+              <mat-error>{{ 'familia.form.nombreRequerido' | transloco }}</mat-error>
+            }
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" floatLabel="always" class="full family-field">
+            <mat-label>{{ 'familia.form.telefonoLabel' | transloco }}</mat-label>
+            <input matInput formControlName="telefono" [placeholder]="'familia.form.telefonoPlaceholder' | transloco"
+              [attr.aria-label]="'familia.form.telefonoLabel' | transloco" />
+            @if (form.controls.telefono.touched && form.controls.telefono.errors?.['required']) {
+              <mat-error>{{ 'familia.form.telefonoRequerido' | transloco }}</mat-error>
+            }
+            @if (form.controls.telefono.errors?.['pattern']) {
+              <mat-error>{{ 'familia.form.telefonoInvalido' | transloco }}</mat-error>
+            }
+          </mat-form-field>
+
+          <div class="form-row">
+            <mat-form-field appearance="outline" floatLabel="always" class="family-field">
+              <mat-label>{{ 'familia.form.relacionLabel' | transloco }}</mat-label>
+              <mat-select formControlName="relacion" [attr.aria-label]="'familia.form.relacionLabel' | transloco">
+              <mat-option *ngFor="let relacion of relaciones" [value]="relacion">{{ relacionKey(relacion) | transloco }}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+            <mat-form-field appearance="outline" floatLabel="always" class="family-field">
+              <mat-label>{{ 'familia.form.ubicacionLabel' | transloco }}</mat-label>
+              <input matInput formControlName="ubicacionHabitual" [placeholder]="'familia.form.ubicacionPlaceholder' | transloco"
+                [attr.aria-label]="'familia.form.ubicacionLabel' | transloco" />
+            </mat-form-field>
+          </div>
+
+          <button mat-flat-button class="btn-verde full" type="submit" [disabled]="guardandoFamiliar">
+            {{ (guardandoFamiliar ? 'familia.form.btnRegistrando' : 'familia.form.btnRegistrar') | transloco }}
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <section class="familia-list">
+      <div class="list-card">
+        <h2>{{ 'familia.lista.tituloTarjeta' | transloco }}</h2>
+        <div class="family-row" *ngFor="let familiar of familiares">
+          <div class="family-avatar">
+            <mat-icon [attr.aria-label]="'familia.lista.avatarAriaLabel' | transloco">person</mat-icon>
+          </div>
+          <div class="family-info">
+            <strong>{{ familiar.nombre }}</strong>
+            <span>{{ familiar.relacion || ('familia.lista.familiarFallback' | transloco) }}</span>
+            <small>{{ familiar.telefono || ('familia.lista.telefonoNoDefinido' | transloco) }}</small>
+            <small>{{ familiar.ubicacion || familiar.ubicacionHabitual || ('familia.lista.ubicacionNoDefinida' | transloco) }}</small>
+          </div>
+          <div class="family-status" [class.secure]="familiar.estado === 'Seguro'"
+            [class.alert]="familiar.estado !== 'Seguro'">
+            {{ familiar.estado || ('familia.lista.estadoPendiente' | transloco) }}</div>
+        </div>
+        <p *ngIf="cargandoFamilia">{{ 'familia.lista.cargando' | transloco }}</p>
+        <p *ngIf="!cargandoFamilia && !familiares.length">{{ 'familia.lista.sinFamiliares' | transloco }}</p>
+      </div>
+    </section>
+  </div>
+</div>

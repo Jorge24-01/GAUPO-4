@@ -1,0 +1,55 @@
+<div class="ayuda-wrap">
+  <section class="ayuda-card">
+    <h2>{{ 'ayuda.titulo' | transloco }}</h2>
+    <p>{{ 'ayuda.subtitulo' | transloco }}</p>
+
+    <div
+      class="chat-box"
+      role="log"
+      aria-live="polite"
+      aria-atomic="false"
+      [attr.aria-label]="'ayuda.chatLog' | transloco"
+    >
+      <div class="mensaje" *ngIf="messages().length === 0">
+        <div class="burbuja bot">
+          <span>{{ 'ayuda.mensajeInicial' | transloco }}</span>
+        </div>
+      </div>
+
+      <div class="mensaje" *ngFor="let mensaje of messages()">
+        <div class="burbuja" [ngClass]="mensaje.sender">
+          <span>{{ mensaje.text }}</span>
+        </div>
+      </div>
+
+      <div class="mensaje" *ngIf="cargando">
+        <div class="burbuja bot">
+          <span>{{ 'ayuda.escribiendo' | transloco }}</span>
+        </div>
+      </div>
+    </div>
+
+    <form [formGroup]="form" (ngSubmit)="enviar()" class="chat-form">
+      <mat-form-field appearance="outline" class="input-chat">
+        <mat-label>{{ 'ayuda.campoPregunta' | transloco }}</mat-label>
+        <input matInput formControlName="pregunta" />
+      </mat-form-field>
+      <button
+        mat-flat-button
+        color="primary"
+        type="submit"
+        [attr.aria-label]="'ayuda.btnEnviarAria' | transloco"
+      >
+        {{ 'ayuda.btnEnviar' | transloco }}
+      </button>
+      <button
+        mat-stroked-button
+        type="button"
+        (click)="clearChat()"
+        [attr.aria-label]="'ayuda.btnLimpiarAria' | transloco"
+      >
+        {{ 'ayuda.btnLimpiar' | transloco }}
+      </button>
+    </form>
+  </section>
+</div>

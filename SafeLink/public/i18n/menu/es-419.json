@@ -1,0 +1,20 @@
+{
+  "inicio": "Inicio",
+  "mapa": "Mapa",
+  "kit": "Kit de Emergencia",
+  "familia": "Registro de Familia",
+  "ayuda": "Ayuda",
+  "admin": "Admin",
+  "cerrarSesion": "Cerrar sesión",
+  "iniciarSesion": "Iniciar sesión",
+  "temaClaro": "Activar modo claro",
+  "temaOscuro": "Activar modo oscuro",
+  "idioma": "Cambiar idioma",
+  "idiomaAnunciado": "Idioma cambiado a español",
+  "footer": {
+    "copyright": "© 2025 SafeLink",
+    "privacidad": "Política de Privacidad",
+    "terminos": "Términos y Condiciones",
+    "contacto": "Contacto"
+  }
+}

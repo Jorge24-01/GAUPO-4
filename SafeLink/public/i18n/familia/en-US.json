@@ -1,0 +1,43 @@
+{
+  "tituloPagina": "Register Safe Family",
+  "subtitulo": "Register your loved ones and check their status in an emergency.",
+  "form": {
+    "tituloTarjeta": "Family Registration",
+    "descripcionTarjeta": "This information will only be visible to you and your family.",
+    "nombreLabel": "Name",
+    "nombrePlaceholder": "Enter a name",
+    "nombreRequerido": "Name is required",
+    "telefonoLabel": "Phone",
+    "telefonoPlaceholder": "Contact number",
+    "telefonoRequerido": "Phone number is required",
+    "telefonoInvalido": "Enter a valid number",
+    "relacionLabel": "Relationship",
+    "ubicacionLabel": "Usual location",
+    "ubicacionPlaceholder": "E.g. School, home, work",
+    "btnRegistrar": "Register Family",
+    "btnRegistrando": "Registering..."
+  },
+  "lista": {
+    "tituloTarjeta": "Family Status",
+    "familiarFallback": "Family member",
+    "telefonoNoDefinido": "Phone not set",
+    "ubicacionNoDefinida": "Location not set",
+    "estadoPendiente": "Pending",
+    "cargando": "Loading registered family members...",
+    "sinFamiliares": "No family members are registered at this time.",
+    "avatarAriaLabel": "Family member icon"
+  },
+  "relaciones": {
+    "pareja": "Partner",
+    "hijo": "Son",
+    "padre": "Father",
+    "madre": "Mother",
+    "otro": "Other"
+  },
+  "mensajes": {
+    "errorCargaFamilia": "Could not load registered family members.",
+    "sesionNoEncontrada": "Session user not found. Please sign in again.",
+    "familiarRegistrado": "Family member registered successfully.",
+    "errorRegistro": "Could not register the family member. Check the data and try again."
+  }
+}

@@ -1,0 +1,149 @@
+<div class="mapa-layout">
+
+  <aside class="sidebar">
+    <h2>{{ 'mapa.titulo' | transloco }}</h2>
+    <p>{{ 'mapa.subtitulo' | transloco }}</p>
+
+    <div class="refugio-detalle" *ngIf="seleccionado">
+      <strong>{{ 'mapa.seleccionado' | transloco }}</strong>
+      <h3>{{ seleccionado.nombre }}</h3>
+      <span>{{ tipoBadge(seleccionado.tipo) }}</span>
+      <span class="origen-badge" *ngIf="origenTexto(seleccionado)">{{ origenTexto(seleccionado) }}</span>
+      <small>{{ direccionTexto(seleccionado) }}</small>
+
+      <p *ngIf="seguridadTexto(seleccionado)">
+        <strong>{{ 'mapa.referenciaSeguridad' | transloco }}</strong> {{ seguridadTexto(seleccionado) }}
+      </p>
+
+      <button mat-flat-button class="btn-ruta" (click)="verRuta($event)" [attr.aria-label]="'mapa.verRuta' | transloco">
+        <mat-icon aria-hidden="true">directions</mat-icon> {{ 'mapa.verRuta' | transloco }}
+      </button>
+
+      <div class="ruta-opciones" *ngIf="mostrandoOpcionesRuta && !modoAgregarPunto">
+        <button mat-stroked-button type="button" (click)="abrirRuta('walking', $event)" [attr.aria-label]="'mapa.caminando' | transloco">
+          <mat-icon aria-hidden="true">directions_walk</mat-icon> {{ 'mapa.caminando' | transloco }}
+        </button>
+        <button mat-stroked-button type="button" (click)="abrirRuta('driving', $event)" [attr.aria-label]="'mapa.vehiculo' | transloco">
+          <mat-icon aria-hidden="true">directions_car</mat-icon> {{ 'mapa.vehiculo' | transloco }}
+        </button>
+        <button mat-stroked-button type="button" (click)="abrirRuta('bicycling', $event)" [attr.aria-label]="'mapa.bicicleta' | transloco">
+          <mat-icon aria-hidden="true">directions_bike</mat-icon> {{ 'mapa.bicicleta' | transloco }}
+        </button>
+      </div>
+
+      <small class="ruta-mensaje" *ngIf="mensajeRuta && !modoAgregarPunto">{{ mensajeRuta }}</small>
+
+      <button
+        mat-button
+        type="button"
+        class="btn-eliminar"
+        *ngIf="seleccionado.propio"
+        [disabled]="eliminandoPunto"
+        (click)="eliminarPuntoPropio(seleccionado, $event)"
+        [attr.aria-label]="'mapa.eliminar' | transloco"
+      >
+        <mat-icon aria-hidden="true">delete</mat-icon> {{ 'mapa.eliminar' | transloco }}
+      </button>
+    </div>
+
+    <button mat-button type="button" class="btn-agregar-punto" *ngIf="!modoAgregarPunto" (click)="activarModoAgregarPunto($event)" [attr.aria-label]="'mapa.agregarPuntoSeguro' | transloco">
+      <mat-icon aria-hidden="true">add_location_alt</mat-icon>
+      {{ 'mapa.agregarPuntoSeguro' | transloco }}
+    </button>
+
+    <div class="modo-agregar-panel" *ngIf="modoAgregarPunto">
+      <strong>{{ 'mapa.modoAgregarActivo' | transloco }}</strong>
+      <span>{{ 'mapa.hazClickEnElMapa' | transloco }}</span>
+      <button mat-stroked-button type="button" (click)="cancelarAgregarPunto($event)" [attr.aria-label]="'mapa.cancelar' | transloco">
+        <mat-icon aria-hidden="true">close</mat-icon> {{ 'mapa.cancelar' | transloco }}
+      </button>
+    </div>
+
+    <div class="refugio-list">
+      <div class="refugio-card"
+           *ngFor="let r of refugiosListado"
+           [class.activo]="seleccionado === r"
+           role="button"
+           tabindex="0"
+           [attr.aria-label]="('mapa.seleccionarZona' | transloco) + ' ' + r.nombre"
+           (click)="seleccionarDesdeLista(r)"
+           (keydown.enter)="seleccionarDesdeLista(r)"
+           (keydown.space)="seleccionarDesdeLista(r)">
+        <div class="refugio-header">
+          <mat-icon aria-hidden="true">{{ iconoTipo(r.tipo) }}</mat-icon>
+          <div>
+            <h4>{{ r.nombre }}</h4>
+            <span class="tipo-badge">{{ tipoBadge(r.tipo) }}</span>
+            <span class="origen-badge" *ngIf="origenTexto(r)">{{ origenTexto(r) }}</span>
+          </div>
+        </div>
+        <p><strong>{{ 'mapa.direccionOReferencia' | transloco }}</strong> {{ direccionTexto(r) }}</p>
+        <p *ngIf="descripcionTexto(r)"><strong>{{ 'mapa.descripcion' | transloco }}</strong> {{ descripcionTexto(r) }}</p>
+        <p *ngIf="seguridadTexto(r)"><strong>{{ 'mapa.referenciaSeguridad' | transloco }}</strong> {{ seguridadTexto(r) }}</p>
+        <button
+          mat-button
+          type="button"
+          class="btn-eliminar card"
+          *ngIf="r.propio"
+          [disabled]="eliminandoPunto"
+          (click)="eliminarPuntoPropio(r, $event)"
+          [attr.aria-label]="('mapa.eliminar' | transloco) + ' ' + r.nombre"
+        >
+          <mat-icon aria-hidden="true">delete</mat-icon> {{ 'mapa.eliminar' | transloco }}
+        </button>
+      </div>
+      <p class="lista-loading" *ngIf="cargandoUbicaciones">{{ 'mapa.cargandoZonas' | transloco }}</p>
+      <p class="lista-empty" *ngIf="!cargandoUbicaciones && !refugios.length">{{ 'mapa.sinPuntos' | transloco }}</p>
+    </div>
+  </aside>
+
+  <div class="mapa-area" [class.modo-agregar]="modoAgregarPunto">
+    <div class="mapa-leyenda" role="list" [attr.aria-label]="'mapa.leyenda' | transloco">
+      <strong>{{ 'mapa.leyenda' | transloco }}</strong>
+      <div role="listitem"><span class="dot verde" aria-hidden="true"></span> {{ 'mapa.puntoSeguro' | transloco }}</div>
+      <div role="listitem"><span class="dot naranja" aria-hidden="true"></span> {{ 'mapa.miPuntoSeguro' | transloco }}</div>
+      <div role="listitem"><span class="dot azul" aria-hidden="true"></span> {{ 'mapa.refugio' | transloco }}</div>
+    </div>
+
+    <div class="mapa-map" #mapContainer role="application" [attr.aria-label]="'mapa.titulo' | transloco"></div>
+
+    <div class="confirmacion-punto-overlay" *ngIf="confirmandoPunto">
+      <div class="mapa-confirmacion" role="dialog" aria-modal="true">
+      <strong>{{ 'mapa.confirmarUbicacionPregunta' | transloco }}</strong>
+      <span *ngIf="puntoPendiente">{{ puntoPendiente.latitud | number:'1.5-5' }}, {{ puntoPendiente.longitud | number:'1.5-5' }}</span>
+        <div>
+          <button mat-stroked-button type="button" (click)="cancelarConfirmacionPunto($event)">{{ 'mapa.cancelar' | transloco }}</button>
+          <button mat-flat-button type="button" (click)="confirmarUbicacionPunto($event)">{{ 'mapa.aceptar' | transloco }}</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-backdrop" *ngIf="mostrandoFormularioPunto">
+      <form class="punto-modal" role="dialog" aria-modal="true" [attr.aria-label]="'mapa.nuevoPuntoSeguro' | transloco" (ngSubmit)="guardarPuntoPropio($event)">
+        <button mat-icon-button type="button" class="modal-close" (click)="cancelarAgregarPunto($event)" [attr.aria-label]="'mapa.cerrar' | transloco">
+          <mat-icon aria-hidden="true">close</mat-icon>
+        </button>
+
+        <h3>{{ 'mapa.nuevoPuntoSeguro' | transloco }}</h3>
+        <p *ngIf="puntoPendiente">{{ puntoPendiente.direccion }}</p>
+        <p *ngIf="resolviendoDireccion">{{ 'mapa.obteniendoDireccion' | transloco }}</p>
+
+        <label>
+          {{ 'mapa.nombreNuevoPunto' | transloco }}
+          <input name="nombre" [(ngModel)]="nuevoPunto.nombre" autocomplete="off">
+        </label>
+
+        <label>
+          {{ 'mapa.referenciaSeguridad' | transloco }}
+          <textarea name="referenciaSeguridad" rows="3" [(ngModel)]="nuevoPunto.referenciaSeguridad"></textarea>
+        </label>
+
+        <button mat-flat-button type="submit" class="btn-guardar-punto" [disabled]="guardandoPunto || resolviendoDireccion">
+          <mat-icon aria-hidden="true">save</mat-icon>
+          {{ guardandoPunto ? ('mapa.guardando' | transloco) : ('mapa.guardarPunto' | transloco) }}
+        </button>
+      </form>
+    </div>
+  </div>
+
+</div>

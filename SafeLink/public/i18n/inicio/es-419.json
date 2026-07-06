@@ -1,0 +1,42 @@
+{
+  "hero": {
+    "tag": "Preparacion ante desastres",
+    "tituloLinea1": "Preparate antes,",
+    "tituloLinea2": "coordina durante",
+    "subtitulo": "SafeLink esta orientada a la preparacion y coordinacion ante desastres naturales, ayudando a los ciudadanos a organizarse y reducir riesgos.",
+    "btnComenzar": "Comenzar ahora",
+    "btnVerMapa": "Ver mapa",
+    "highlights": {
+      "notificaTitulo": "Notifica cuando tus familiares estan bien",
+      "notificaSub": "o ensaya casos de emergencia",
+      "kitTitulo": "Revisa el contenido de un kit recomendado",
+      "kitSub": "para estar preparado.",
+      "zonasTitulo": "Consulta zonas de seguridad",
+      "zonasSub": "y sigue rutas sugeridas para llegar a los puntos de encuentro."
+    }
+  },
+  "features": {
+    "titulo": "Consejos de preparacion",
+    "subtitulo": "Recomendaciones cargadas desde SafeLink para actuar rapido ante una emergencia.",
+    "cargando": "Cargando consejos de preparacion...",
+    "sinConsejos": "No hay consejos disponibles por el momento.",
+    "errorCarga": "No se pudieron cargar los consejos en este momento.",
+    "consejoAnterior": "Consejo anterior",
+    "consejoSiguiente": "Consejo siguiente",
+    "verConsejo": "Ver consejo {{n}}",
+    "indicadoresCarrusel": "Indicadores del carrusel",
+    "desbloqueasteConsejo": "¡Desbloqueaste un consejo!",
+    "raspaParaDesbloquear": "Raspa para desbloquear el consejo",
+    "mantenPresionado": "Manten presionado y mueve el cursor sobre la tarjeta",
+    "categoriaPreparacion": "Preparacion",
+    "categorias": {
+      "preparacion": "Preparación",
+      "prevencion": "Prevención",
+      "evacuacion": "Evacuación",
+      "familia": "Familia",
+      "documentos": "Documentos",
+      "respuesta": "Respuesta",
+      "post-emergencia": "Post-emergencia"
+    }
+  }
+}

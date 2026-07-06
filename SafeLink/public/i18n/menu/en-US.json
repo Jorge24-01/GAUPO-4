@@ -1,0 +1,20 @@
+{
+  "inicio": "Home",
+  "mapa": "Map",
+  "kit": "Emergency Kit",
+  "familia": "Family Registry",
+  "ayuda": "Help",
+  "admin": "Admin",
+  "cerrarSesion": "Log out",
+  "iniciarSesion": "Log in",
+  "temaClaro": "Switch to light mode",
+  "temaOscuro": "Switch to dark mode",
+  "idioma": "Change language",
+  "idiomaAnunciado": "Language changed to English",
+  "footer": {
+    "copyright": "© 2025 SafeLink",
+    "privacidad": "Privacy Policy",
+    "terminos": "Terms and Conditions",
+    "contacto": "Contact"
+  }
+}

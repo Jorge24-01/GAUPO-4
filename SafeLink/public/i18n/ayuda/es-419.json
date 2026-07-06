@@ -1,0 +1,14 @@
+{
+  "titulo": "Asistente SafeLink",
+  "subtitulo": "Escribe tu pregunta y el asistente te dará una respuesta básica.",
+  "chatLog": "Historial de conversación con el Asistente SafeLink",
+  "escribiendo": "Escribiendo...",
+  "campoPregunta": "Escribe tu pregunta",
+  "btnEnviar": "Enviar",
+  "btnEnviarAria": "Enviar pregunta al asistente",
+  "btnLimpiar": "Limpiar",
+  "btnLimpiarAria": "Limpiar la conversación",
+  "mensajeInicial": "Hola, soy el Asistente SafeLink. Puedes consultar las preguntas frecuentes disponibles.",
+  "noPudeGenerar": "No pude generar una respuesta.",
+  "noEncontreRespuesta": "No encontré una respuesta en las preguntas frecuentes disponibles."
+}

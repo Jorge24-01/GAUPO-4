@@ -1,0 +1,113 @@
+<script src="../../services/auth.spec.ts"></script>
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-tag">
+      <mat-icon aria-hidden="true">emergency</mat-icon>
+      {{ 'inicio.hero.tag' | transloco }}
+    </div>
+    <h1>{{ 'inicio.hero.tituloLinea1' | transloco }}<br>
+      <span class="verde">{{ 'inicio.hero.tituloLinea2' | transloco }}</span>
+    </h1>
+    <p>{{ 'inicio.hero.subtitulo' | transloco }}</p>
+    <div class="hero-btns">
+      @if (!auth.isLoggedIn()) {
+        <a mat-flat-button routerLink="/registro" class="btn-primary-verde">{{ 'inicio.hero.btnComenzar' | transloco }}</a>
+      }
+      <a mat-stroked-button routerLink="/mapa" class="btn-outline-verde">{{ 'inicio.hero.btnVerMapa' | transloco }}</a>
+    </div>
+    <div class="hero-highlights">
+      <div class="highlight-card">
+        <mat-icon aria-hidden="true">notifications_active</mat-icon>
+        <div>
+          <strong>{{ 'inicio.hero.highlights.notificaTitulo' | transloco }}</strong>
+          <span>{{ 'inicio.hero.highlights.notificaSub' | transloco }}</span>
+        </div>
+      </div>
+      <div class="highlight-card">
+        <mat-icon aria-hidden="true">backpack</mat-icon>
+        <div>
+          <strong>{{ 'inicio.hero.highlights.kitTitulo' | transloco }}</strong>
+          <span>{{ 'inicio.hero.highlights.kitSub' | transloco }}</span>
+        </div>
+      </div>
+      <div class="highlight-card">
+        <mat-icon aria-hidden="true">map</mat-icon>
+        <div>
+          <strong>{{ 'inicio.hero.highlights.zonasTitulo' | transloco }}</strong>
+          <span>{{ 'inicio.hero.highlights.zonasSub' | transloco }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="illustration-card" aria-hidden="true">
+      <div class="hero-figure hero-figure-left"></div>
+      <div class="hero-figure hero-figure-center"></div>
+      <div class="hero-figure hero-figure-right"></div>
+      <div class="hero-screen">
+        <div class="screen-top"></div>
+        <div class="screen-content">
+          <div class="dot-row"><span></span><span></span><span></span></div>
+          <div class="map-grid">
+            <span></span><span></span><span></span><span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="features">
+  <h2>{{ 'inicio.features.titulo' | transloco }}</h2>
+  <p class="features-sub">{{ 'inicio.features.subtitulo' | transloco }}</p>
+  @if (cargandoConsejos) {
+    <p class="features-state">{{ 'inicio.features.cargando' | transloco }}</p>
+  } @else if (features.length) {
+    <div class="tips-carousel">
+      <button class="carousel-btn" type="button" [attr.aria-label]="'inicio.features.consejoAnterior' | transloco" [disabled]="features.length < 2" (click)="anteriorConsejo()">
+        <mat-icon aria-hidden="true">chevron_left</mat-icon>
+      </button>
+
+      <article
+        class="scratch-card"
+        [class.unlocked]="consejoDesbloqueado"
+        (pointerdown)="iniciarRaspado($event)"
+        (pointermove)="raspar($event)"
+        (pointerup)="detenerRaspado()"
+        (pointerleave)="detenerRaspado()"
+        (pointercancel)="detenerRaspado()">
+        <div class="tip-content">
+          <div class="feat-top">
+            <div class="feat-icon"><mat-icon aria-hidden="true">{{ consejoActual.icon }}</mat-icon></div>
+            <span>{{ consejoActual.category }}</span>
+          </div>
+          @if (consejoDesbloqueado) {
+            <small class="unlock-message">{{ 'inicio.features.desbloqueasteConsejo' | transloco }}</small>
+          }
+          <h3>{{ consejoActual.title }}</h3>
+          <p>{{ consejoActual.desc }}</p>
+        </div>
+
+        <div
+          class="scratch-cover"
+          [class.cover-hidden]="consejoDesbloqueado"
+          [attr.aria-hidden]="consejoDesbloqueado"
+          [attr.aria-label]="consejoDesbloqueado ? null : ('inicio.features.raspaParaDesbloquear' | transloco)">
+          <canvas #scratchCanvas class="scratch-canvas" aria-hidden="true"></canvas>
+        </div>
+      </article>
+
+      <button class="carousel-btn" type="button" [attr.aria-label]="'inicio.features.consejoSiguiente' | transloco" [disabled]="features.length < 2" (click)="siguienteConsejo()">
+        <mat-icon aria-hidden="true">chevron_right</mat-icon>
+      </button>
+    </div>
+
+    <div class="carousel-dots" [attr.aria-label]="'inicio.features.indicadoresCarrusel' | transloco">
+      @for (f of features; track $index) {
+        <button type="button" [class.active]="$index === indiceConsejoActual" (click)="irAConsejo($index)" [attr.aria-label]="'inicio.features.verConsejo' | transloco: { n: $index + 1 }"></button>
+      }
+    </div>
+  } @else {
+    <p class="features-state">{{ mensajeConsejos }}</p>
+  }
+</section>

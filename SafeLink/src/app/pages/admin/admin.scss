@@ -1,0 +1,108 @@
+.admin-page {
+  padding: 24px;
+}
+
+.admin-header {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.admin-header h1 {
+  margin: 0;
+  font-size: 2rem;
+}
+
+.admin-header p {
+  margin: 0;
+  color: #515151;
+}
+
+.admin-status {
+  margin-bottom: 16px;
+}
+
+.error {
+  color: #c62828;
+  font-weight: 600;
+}
+
+.admin-loading {
+  color: #2f5d90;
+  font-weight: 500;
+}
+
+.admin-section {
+  margin-bottom: 28px;
+}
+
+.admin-section h2 {
+  margin-bottom: 16px;
+}
+
+.grid-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 18px;
+}
+
+.card {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 18px 30px rgba(0, 0, 0, 0.06);
+  padding: 18px;
+  min-height: 190px;
+  display: grid;
+  gap: 8px;
+}
+
+.card strong {
+  font-size: 1.05rem;
+}
+
+.label {
+  display: block;
+  margin-top: 10px;
+  color: #6b6b6b;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.card p {
+  margin: 0;
+  color: #323232;
+}
+
+.family-admin-card {
+  align-content: start;
+}
+
+.admin-family-list {
+  display: grid;
+  gap: 10px;
+}
+
+.admin-family-member {
+  border-top: 1px solid #ececec;
+  padding-top: 10px;
+}
+
+.admin-family-member strong {
+  font-size: 0.95rem;
+}
+
+.btn-eliminar {
+  justify-self: start;
+  margin-top: 12px;
+  border-color: #c62828 !important;
+  color: #c62828 !important;
+}
+
+.btn-eliminar mat-icon {
+  font-size: 18px;
+  height: 18px;
+  width: 18px;
+  margin-right: 6px;
+}

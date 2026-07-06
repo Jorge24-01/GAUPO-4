@@ -1,0 +1,134 @@
+<div class="auth-wrap">
+  <div class="auth-left">
+    <div class="auth-brand">
+      <div class="brand-icon"><mat-icon aria-hidden="true">eco</mat-icon></div>
+      <span>{{ 'registro.marca' | transloco }}</span>
+    </div>
+    <h2 [innerHTML]="'registro.heroTitulo' | transloco"></h2>
+    <p>{{ 'registro.heroDescripcion' | transloco }}</p>
+    <div class="auth-feature">
+      <div class="feat-icon"><mat-icon aria-hidden="true">notifications_active</mat-icon></div>
+      <div><strong>{{ 'registro.alertasTitulo' | transloco }}</strong><span>{{ 'registro.alertasDescripcion' | transloco }}</span></div>
+    </div>
+    <div class="auth-feature">
+      <div class="feat-icon"><mat-icon aria-hidden="true">place</mat-icon></div>
+      <div><strong>{{ 'registro.zonasTitulo' | transloco }}</strong><span>{{ 'registro.zonasDescripcion' | transloco }}</span></div>
+    </div>
+    <div class="auth-feature">
+      <div class="feat-icon"><mat-icon aria-hidden="true">backpack</mat-icon></div>
+      <div><strong>{{ 'registro.kitTitulo' | transloco }}</strong><span>{{ 'registro.kitDescripcion' | transloco }}</span></div>
+    </div>
+  </div>
+
+  <div class="auth-right">
+    <h3>{{ 'registro.crearCuenta' | transloco }}</h3>
+    <p class="auth-sub">{{ 'registro.subtitulo' | transloco }}</p>
+
+    <form [formGroup]="form" (ngSubmit)="registrar()">
+
+      <div class="form-row">
+        <mat-form-field appearance="outline">
+          <mat-label>{{ 'registro.nombreLabel' | transloco }}</mat-label>
+          <input matInput formControlName="nombre" [placeholder]="'registro.nombrePlaceholder' | transloco" maxlength="50" />
+          @if (form.controls.nombre.touched && form.controls.nombre.errors?.['required']) {
+            <mat-error>{{ 'registro.nombreRequerido' | transloco }}</mat-error>
+          }
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>{{ 'registro.apellidoLabel' | transloco }}</mat-label>
+          <input matInput formControlName="apellido" [placeholder]="'registro.apellidoPlaceholder' | transloco" maxlength="50" />
+          @if (form.controls.apellido.touched && form.controls.apellido.errors?.['required']) {
+            <mat-error>{{ 'registro.apellidoRequerido' | transloco }}</mat-error>
+          }
+        </mat-form-field>
+      </div>
+
+      <mat-form-field appearance="outline" class="full">
+        <mat-label>{{ 'registro.emailLabel' | transloco }}</mat-label>
+        <input matInput type="email" formControlName="email" />
+        <mat-icon matPrefix aria-hidden="true">mail_outline</mat-icon>
+        @if (form.controls.email.touched && form.controls.email.errors?.['required']) {
+          <mat-error>{{ 'registro.emailRequerido' | transloco }}</mat-error>
+        }
+        @if (form.controls.email.errors?.['email']) {
+          <mat-error>{{ 'registro.emailInvalido' | transloco }}</mat-error>
+        }
+      </mat-form-field>
+
+      <div class="form-row">
+        <mat-form-field appearance="outline">
+          <mat-label>{{ 'registro.telefonoLabel' | transloco }}</mat-label>
+          <input matInput formControlName="telefono" [placeholder]="'registro.telefonoPlaceholder' | transloco" />
+          @if (form.controls.telefono.errors?.['pattern']) {
+            <mat-error>{{ 'registro.telefonoInvalido' | transloco }}</mat-error>
+          }
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>{{ 'registro.distritoLabel' | transloco }}</mat-label>
+          <input matInput formControlName="distrito" [placeholder]="'registro.distritoPlaceholder' | transloco" />
+          @if (form.controls.distrito.touched && form.controls.distrito.errors?.['required']) {
+            <mat-error>{{ 'registro.distritoRequerido' | transloco }}</mat-error>
+          }
+        </mat-form-field>
+      </div>
+
+      <mat-form-field appearance="outline" class="full">
+        <mat-label>{{ 'registro.tipoCuentaLabel' | transloco }}</mat-label>
+        <mat-select formControlName="tipoUsuario">
+          @for (tipo of tiposUsuario; track tipo.valor) {
+            <mat-option [value]="tipo.valor">{{ tipo.etiqueta | transloco }}</mat-option>
+          }
+        </mat-select>
+        <mat-hint>{{ 'registro.tipoCuentaHint' | transloco }}</mat-hint>
+        @if (form.controls.tipoUsuario.touched && form.controls.tipoUsuario.errors?.['required']) {
+          <mat-error>{{ 'registro.tipoCuentaRequerido' | transloco }}</mat-error>
+        }
+      </mat-form-field>
+
+      <div class="form-row">
+        <mat-form-field appearance="outline">
+          <mat-label>{{ 'registro.passwordLabel' | transloco }}</mat-label>
+          <input matInput [type]="hidePass ? 'password' : 'text'" formControlName="password" />
+          <button mat-icon-button matSuffix type="button" (click)="hidePass=!hidePass"
+            [attr.aria-label]="(hidePass ? 'registro.mostrarPassword' : 'registro.ocultarPassword') | transloco"
+            [attr.aria-pressed]="!hidePass">
+            <mat-icon aria-hidden="true">{{ hidePass ? 'visibility_off' : 'visibility' }}</mat-icon>
+          </button>
+          @if (form.controls.password.errors?.['minlength']) {
+            <mat-error>{{ 'registro.passwordMinimo' | transloco }}</mat-error>
+          }
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>{{ 'registro.password2Label' | transloco }}</mat-label>
+          <input matInput [type]="hidePass2 ? 'password' : 'text'" formControlName="password2" />
+          <button mat-icon-button matSuffix type="button" (click)="hidePass2=!hidePass2"
+            [attr.aria-label]="(hidePass2 ? 'registro.mostrarPassword2' : 'registro.ocultarPassword2') | transloco"
+            [attr.aria-pressed]="!hidePass2">
+            <mat-icon aria-hidden="true">{{ hidePass2 ? 'visibility_off' : 'visibility' }}</mat-icon>
+          </button>
+          @if (form.errors?.['noCoinciden'] && form.controls.password2.touched) {
+            <mat-error>{{ 'registro.passwordsNoCoinciden' | transloco }}</mat-error>
+          }
+        </mat-form-field>
+      </div>
+
+      <mat-checkbox formControlName="terminos" class="terminos-check">
+        {{ 'registro.terminosPrefijo' | transloco }} <a href="#" class="link-verde">{{ 'registro.terminosLink' | transloco }}</a>
+        {{ 'registro.terminosMedio' | transloco }} <a href="#" class="link-verde">{{ 'registro.privacidadLink' | transloco }}</a> {{ 'registro.terminosSufijo' | transloco }}
+      </mat-checkbox>
+
+      @if (errorRegistro) {
+        <p class="auth-message error" role="alert">{{ errorRegistro }}</p>
+      }
+      @if (exitoRegistro) {
+        <p class="auth-message success" role="status">{{ exitoRegistro }}</p>
+      }
+
+      <button mat-flat-button class="btn-verde full" type="submit">{{ 'registro.registrarme' | transloco }}</button>
+
+      <p class="login-link">
+        {{ 'registro.yaTienesCuenta' | transloco }} <a routerLink="/login" class="link-verde">{{ 'registro.iniciaSesion' | transloco }}</a>
+      </p>
+    </form>
+  </div>
+</div>

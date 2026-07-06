@@ -1,0 +1,175 @@
+.navbar {
+  background: #ffffff;
+  color: #1a1a1a;
+  border-bottom: 1.5px solid #e0e0e0;
+  padding: 0 32px;
+  height: 58px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.07);
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 800;
+  font-size: 18px;
+  color: #3a8c4e;
+  text-decoration: none;
+  margin-right: 20px;
+}
+.logo-leaf {
+  width: 30px; height: 30px;
+  background: #3a8c4e;
+  border-radius: 50% 50% 50% 0;
+  display: flex; align-items: center; justify-content: center;
+  mat-icon { color: white; font-size: 18px; }
+}
+.nav-links {
+  display: flex; gap: 2px;
+  a {
+    position: relative;
+    overflow: hidden;
+    font-size: 13px;
+    font-weight: 500;
+    color: #555 !important;
+    border-radius: 10px;
+    transition: color 0.22s ease, background 0.22s ease, box-shadow 0.22s ease;
+    --mat-text-button-state-layer-color: transparent;
+    --mat-text-button-hover-state-layer-opacity: 0;
+  }
+  a::after {
+    content: '';
+    position: absolute;
+    left: 18px;
+    right: 18px;
+    bottom: 8px;
+    height: 2px;
+    border-radius: 999px;
+    background: #3a8c4e;
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.26s cubic-bezier(.2, .9, .3, 1);
+  }
+  a:hover {
+    color: #2f7a42 !important;
+    background: transparent !important;
+  }
+  a:hover::after { transform: scaleX(1); }
+  a.link-activo {
+    color: #ffffff !important;
+    font-weight: 700;
+    background: linear-gradient(135deg, #3a8c4e, #2f7a42) !important;
+    box-shadow: 0 8px 18px rgba(58,140,78,0.22);
+  }
+  a.link-activo::after { transform: scaleX(0); }
+}
+.spacer { flex: 1; }
+.theme-toggle {
+  color: #3a8c4e !important;
+  margin-right: 10px;
+  border-radius: 10px !important;
+  transition: background 0.22s ease, color 0.22s ease, transform 0.22s ease;
+}
+.theme-toggle:hover {
+  background: rgba(58, 140, 78, 0.1) !important;
+  transform: translateY(-1px);
+}
+.btn-sesion {
+  color: #3a8c4e !important;
+  border-color: #3a8c4e !important;
+  font-weight: 700 !important;
+  border-radius: 8px !important;
+}
+.btn-sesion:hover { background: #e8f5ec !important; }
+.user-button {
+  color: #2f6f3f !important;
+  font-weight: 700 !important;
+  border-radius: 8px !important;
+}
+.user-button ::ng-deep .mdc-button__label {
+  display: inline-flex;
+  align-items: center;
+}
+.user-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #3a8c4e;
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 800;
+  margin-right: 8px;
+}
+.user-summary {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  line-height: 1.1;
+}
+.user-name {
+  max-width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.user-type {
+  font-size: 10px;
+  font-weight: 700;
+  color: #6b7280;
+}
+.contenido { min-height: calc(100vh - 58px - 54px); }
+.footer {
+  background: #f5f5f5;
+  border-top: 1px solid #e0e0e0;
+  padding: 14px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  color: #888;
+  .footer-links {
+    display: flex; gap: 20px;
+    a { color: #3a8c4e; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+  }
+}
+
+:host-context(.theme-dark) .nav-links {
+  a {
+    color: #e5e7eb !important;
+    border: 1px solid transparent;
+  }
+
+  a:hover:not(.link-activo) {
+    color: #86efac !important;
+    background: transparent !important;
+  }
+
+  a.mat-mdc-button.link-activo,
+  a.link-activo {
+    color: #ffffff !important;
+    border-color: rgba(110, 231, 168, 0.85);
+    border-radius: 12px !important;
+    background: linear-gradient(135deg, #2f8f46, #276f3a) !important;
+    box-shadow:
+      0 0 0 2px rgba(110, 231, 168, 0.34),
+      0 0 18px rgba(34, 197, 94, 0.42),
+      0 8px 22px rgba(0, 0, 0, 0.35);
+  }
+
+  a.mat-mdc-button.link-activo:hover,
+  a.link-activo:hover {
+    color: #ffffff !important;
+    background: linear-gradient(135deg, #2f8f46, #276f3a) !important;
+  }
+
+  a.mat-mdc-button.link-activo::after,
+  a.link-activo::after {
+    transform: scaleX(0);
+  }
+}

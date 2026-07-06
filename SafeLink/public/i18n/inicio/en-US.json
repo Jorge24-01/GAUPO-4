@@ -1,0 +1,42 @@
+{
+  "hero": {
+    "tag": "Disaster preparedness",
+    "tituloLinea1": "Prepare beforehand,",
+    "tituloLinea2": "coordinate during",
+    "subtitulo": "SafeLink focuses on preparedness and coordination during natural disasters, helping citizens organize and reduce risks.",
+    "btnComenzar": "Get started",
+    "btnVerMapa": "View map",
+    "highlights": {
+      "notificaTitulo": "Notify others when your family is safe",
+      "notificaSub": "or rehearse emergency scenarios",
+      "kitTitulo": "Check the contents of a recommended kit",
+      "kitSub": "to be prepared.",
+      "zonasTitulo": "Check safety zones",
+      "zonasSub": "and follow suggested routes to reach meeting points."
+    }
+  },
+  "features": {
+    "titulo": "Preparedness tips",
+    "subtitulo": "Recommendations loaded from SafeLink to act quickly in an emergency.",
+    "cargando": "Loading preparedness tips...",
+    "sinConsejos": "No tips are available at this time.",
+    "errorCarga": "Tips could not be loaded at this time.",
+    "consejoAnterior": "Previous tip",
+    "consejoSiguiente": "Next tip",
+    "verConsejo": "View tip {{n}}",
+    "indicadoresCarrusel": "Carousel indicators",
+    "desbloqueasteConsejo": "You unlocked a tip!",
+    "raspaParaDesbloquear": "Scratch to unlock the tip",
+    "mantenPresionado": "Press and hold, then move the cursor over the card",
+    "categoriaPreparacion": "Preparedness",
+    "categorias": {
+      "preparacion": "Preparation",
+      "prevencion": "Prevention",
+      "evacuacion": "Evacuation",
+      "familia": "Family",
+      "documentos": "Documents",
+      "respuesta": "Response",
+      "post-emergencia": "Post-emergency"
+    }
+  }
+}

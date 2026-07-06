@@ -1,0 +1,555 @@
+// Include theming for Angular Material with `mat.theme()`.
+// This Sass mixin will define CSS variables that are used for styling Angular Material
+// components according to the Material 3 design spec.
+// Learn more about theming and how to use it for your application's
+// custom components at https://material.angular.dev/guide/theming
+@use '@angular/material' as mat;
+
+html {
+  height: 100%;
+  @include mat.theme(
+    (
+      color: (
+        primary: mat.$azure-palette,
+        tertiary: mat.$blue-palette,
+      ),
+      typography: Roboto,
+      density: 0,
+    )
+  );
+}
+
+:root {
+  --safelink-green: #3a8c4e;
+  --safelink-green-strong: #2f7a42;
+  --safelink-bg: #f8faf8;
+  --safelink-surface: #ffffff;
+  --safelink-surface-soft: #f1fbf4;
+  --safelink-text: #1a1a1a;
+  --safelink-muted: #666666;
+  --safelink-border: rgba(58, 140, 78, 0.14);
+}
+
+html.theme-dark {
+  color-scheme: dark;
+  --safelink-green: #38a169;
+  --safelink-green-strong: #6ee7a8;
+  --safelink-bg: #0f172a;
+  --safelink-surface: #13261c;
+  --safelink-surface-soft: #17251d;
+  --safelink-text: #f8fafc;
+  --safelink-muted: #d1d5db;
+  --safelink-subtle: #94a3b8;
+  --safelink-border: rgba(255, 255, 255, 0.12);
+}
+
+body {
+  // Default the application to a light color theme. This can be changed to
+  // `dark` to enable the dark color theme, or to `light dark` to defer to the
+  // user's system settings.
+  color-scheme: light;
+
+  // Set a default background, font and text colors for the application using
+  // Angular Material's system-level CSS variables. Learn more about these
+  // variables at https://material.angular.dev/guide/system-variables
+  background-color: var(--mat-sys-surface);
+  color: var(--mat-sys-on-surface);
+  font: var(--mat-sys-body-medium);
+
+  // Reset the user agent margin.
+  margin: 0;
+  height: 100%;
+}
+
+html.theme-dark body {
+  color-scheme: dark;
+  background:
+    radial-gradient(circle at 20% 0%, rgba(56, 161, 105, 0.12), transparent 28rem),
+    var(--safelink-bg);
+  color: var(--safelink-text);
+}
+
+html.theme-dark .contenido {
+  background: var(--safelink-bg);
+}
+
+html.theme-dark .navbar {
+  background: rgba(23, 37, 29, 0.96);
+  color: var(--safelink-text);
+  border-bottom-color: var(--safelink-border);
+  box-shadow: 0 1px 12px rgba(0, 0, 0, 0.28);
+}
+
+html.theme-dark .logo,
+html.theme-dark .btn-sesion,
+html.theme-dark .theme-toggle,
+html.theme-dark .footer .footer-links a {
+  color: var(--safelink-green-strong) !important;
+}
+
+html.theme-dark .logo-leaf,
+html.theme-dark .user-avatar {
+  background: var(--safelink-green);
+}
+
+html.theme-dark .nav-links a {
+  color: #e5e7eb !important;
+}
+
+html.theme-dark .nav-links a:hover,
+html.theme-dark .user-button {
+  color: var(--safelink-green-strong) !important;
+}
+
+html.theme-dark .nav-links a.link-activo {
+  color: #ffffff !important;
+  background: linear-gradient(135deg, #2f8f46, #38a169) !important;
+  box-shadow: 0 8px 18px rgba(56, 161, 105, 0.24);
+}
+
+html.theme-dark .theme-toggle:hover,
+html.theme-dark .btn-sesion:hover {
+  background: rgba(56, 161, 105, 0.14) !important;
+}
+
+html.theme-dark .user-type,
+html.theme-dark .footer,
+html.theme-dark .footer span {
+  color: var(--safelink-muted);
+}
+
+html.theme-dark .footer {
+  background: #0b1511;
+  border-top-color: var(--safelink-border);
+}
+
+html.theme-dark .mat-mdc-menu-panel {
+  background: var(--safelink-surface) !important;
+  border: 1px solid var(--safelink-border);
+}
+
+html.theme-dark .mat-mdc-menu-item,
+html.theme-dark .mat-mdc-menu-item .mat-icon {
+  color: var(--safelink-text) !important;
+}
+
+html.theme-dark .mat-mdc-form-field {
+  --mdc-outlined-text-field-label-text-color: var(--safelink-muted);
+  --mdc-outlined-text-field-input-text-color: var(--safelink-text);
+  --mdc-outlined-text-field-outline-color: var(--safelink-border);
+  --mdc-outlined-text-field-hover-outline-color: rgba(110, 231, 160, 0.45);
+  --mdc-outlined-text-field-focus-outline-color: var(--safelink-green-strong);
+  --mdc-outlined-text-field-caret-color: var(--safelink-green-strong);
+}
+
+html.theme-dark .mat-mdc-form-field .mdc-text-field {
+  background: rgba(255, 255, 255, 0.04) !important;
+}
+
+html.theme-dark .mat-mdc-input-element,
+html.theme-dark .mat-mdc-select-value,
+html.theme-dark .mat-mdc-floating-label,
+html.theme-dark .mat-mdc-checkbox label {
+  color: var(--safelink-text) !important;
+}
+
+html.theme-dark .mat-mdc-input-element::placeholder {
+  color: rgba(203, 213, 225, 0.76) !important;
+}
+
+html.theme-dark .hero {
+  background: linear-gradient(135deg, #102018 0%, #0f172a 100%);
+}
+
+html.theme-dark h1,
+html.theme-dark .features h2,
+html.theme-dark .highlight-card strong,
+html.theme-dark .tip-content h3,
+html.theme-dark .familia-head h1,
+html.theme-dark .form-card h2,
+html.theme-dark .list-card h2,
+html.theme-dark .family-info strong,
+html.theme-dark .admin-header h1,
+html.theme-dark .admin-section h2,
+html.theme-dark .card strong,
+html.theme-dark .auth-right h3,
+html.theme-dark .refugio-header h4,
+html.theme-dark .mapa-leyenda strong {
+  color: var(--safelink-text) !important;
+}
+
+html.theme-dark .hero-left p,
+html.theme-dark .features-sub,
+html.theme-dark .features-state,
+html.theme-dark .highlight-card span,
+html.theme-dark .tip-content p,
+html.theme-dark .familia-head p,
+html.theme-dark .form-card p,
+html.theme-dark .family-info span,
+html.theme-dark .family-info small,
+html.theme-dark .admin-header p,
+html.theme-dark .card p,
+html.theme-dark .label,
+html.theme-dark .auth-sub,
+html.theme-dark .login-link,
+html.theme-dark .sidebar > p,
+html.theme-dark .refugio-card p,
+html.theme-dark .refugio-card p strong,
+html.theme-dark .refugio-detalle,
+html.theme-dark .refugio-detalle strong,
+html.theme-dark .refugio-detalle span,
+html.theme-dark .refugio-detalle small,
+html.theme-dark .kit-hero p,
+html.theme-dark .kit-footer,
+html.theme-dark .kit-loading,
+html.theme-dark .kit-empty {
+  color: var(--safelink-muted) !important;
+}
+
+html.theme-dark .verde,
+html.theme-dark .hero-tag,
+html.theme-dark .familia-head span,
+html.theme-dark .feat-top span,
+html.theme-dark .unlock-message,
+html.theme-dark .kit-links a,
+html.theme-dark .link-verde,
+html.theme-dark .forgot,
+html.theme-dark .tipo-badge {
+  color: var(--safelink-green-strong) !important;
+}
+
+html.theme-dark .features,
+html.theme-dark .auth-right,
+html.theme-dark .familia-page,
+html.theme-dark .admin-page,
+html.theme-dark .kit-grid {
+  background: var(--safelink-bg);
+}
+
+html.theme-dark .highlight-card,
+html.theme-dark .illustration-card,
+html.theme-dark .hero-screen,
+html.theme-dark .scratch-card,
+html.theme-dark .familia-form,
+html.theme-dark .familia-list,
+html.theme-dark .card,
+html.theme-dark .refugio-card,
+html.theme-dark .mapa-leyenda,
+html.theme-dark .kit-loading,
+html.theme-dark .kit-empty {
+  background: linear-gradient(180deg, var(--safelink-surface) 0%, var(--safelink-surface-soft) 100%);
+  border-color: var(--safelink-border);
+  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.24);
+}
+
+html.theme-dark .hero-tag,
+html.theme-dark .carousel-btn,
+html.theme-dark .unlock-message,
+html.theme-dark .item-category,
+html.theme-dark .family-avatar,
+html.theme-dark .tipo-badge {
+  background: rgba(56, 161, 105, 0.16);
+}
+
+html.theme-dark .screen-top,
+html.theme-dark .map-grid span,
+html.theme-dark .tip-content::before,
+html.theme-dark .family-row,
+html.theme-dark .admin-family-member,
+html.theme-dark .kit-footer {
+  border-color: var(--safelink-border);
+}
+
+html.theme-dark .screen-top,
+html.theme-dark .map-grid span {
+  background: rgba(56, 161, 105, 0.12);
+}
+
+html.theme-dark .scratch-card {
+  background:
+    radial-gradient(circle at 14% 18%, rgba(56, 161, 105, 0.22), transparent 28%),
+    radial-gradient(circle at 88% 78%, rgba(110, 231, 160, 0.12), transparent 30%),
+    linear-gradient(145deg, #17251d, #1c2f24);
+}
+
+html.theme-dark .scratch-cover {
+  color: #ffffff;
+}
+
+html.theme-dark .tip-content::before {
+  background: rgba(15, 23, 42, 0.34);
+}
+
+html.theme-dark .carousel-btn {
+  color: var(--safelink-green-strong);
+}
+
+html.theme-dark .carousel-btn:hover:not(:disabled) {
+  background: rgba(56, 161, 105, 0.24);
+}
+
+html.theme-dark .kit-hero {
+  background: linear-gradient(180deg, #102018 0%, #0f172a 100%);
+  border-bottom-color: var(--safelink-border);
+}
+
+html.theme-dark .kit-hero h1,
+html.theme-dark .item-main strong {
+  color: var(--safelink-text) !important;
+  text-shadow: none;
+}
+
+html.theme-dark .item-card {
+  background: linear-gradient(180deg, var(--safelink-surface) 0%, var(--safelink-surface-soft) 100%);
+  border-color: var(--safelink-border);
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.22);
+}
+
+html.theme-dark .item-icon {
+  background: rgba(56, 161, 105, 0.14);
+  color: var(--safelink-green-strong);
+}
+
+html.theme-dark .mapa-layout,
+html.theme-dark .sidebar {
+  background: var(--safelink-bg);
+  color: var(--safelink-text);
+}
+
+html.theme-dark .sidebar {
+  border-right-color: var(--safelink-border);
+}
+
+html.theme-dark .refugio-card:hover,
+html.theme-dark .refugio-card.activo {
+  background: rgba(56, 161, 105, 0.14);
+  border-color: rgba(110, 231, 160, 0.5);
+}
+
+html.theme-dark .lista-loading,
+html.theme-dark .lista-empty,
+html.theme-dark .refugio-detalle {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: var(--safelink-border);
+  color: var(--safelink-muted);
+}
+
+html.theme-dark .mapa-area {
+  background: #0b1511;
+}
+
+html.theme-dark .familia-form,
+html.theme-dark .familia-list {
+  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.24);
+}
+
+html.theme-dark .family-status.secure {
+  background: rgba(56, 161, 105, 0.18);
+  color: var(--safelink-green-strong);
+}
+
+html.theme-dark .family-status.alert,
+html.theme-dark .auth-message.error,
+html.theme-dark .error {
+  background: rgba(248, 113, 113, 0.12);
+  color: #fca5a5;
+}
+
+html.theme-dark .auth-wrap {
+  background: var(--safelink-bg);
+}
+
+html.theme-dark .auth-left {
+  background: linear-gradient(160deg, #1c2f24 0%, #2f8f46 100%);
+}
+
+html.theme-dark .divider span {
+  background: var(--safelink-surface);
+  color: var(--safelink-muted);
+}
+
+html.theme-dark .divider::before {
+  background: var(--safelink-border);
+}
+
+html.theme-dark .terminos-check {
+  color: var(--safelink-muted);
+}
+
+html.theme-dark .ayuda-wrap {
+  background: linear-gradient(135deg, #0f172a 0%, #102018 100%);
+}
+
+html.theme-dark .ayuda-card,
+html.theme-dark .chat-box,
+html.theme-dark .chat-form {
+  background: linear-gradient(135deg, rgba(23, 37, 29, 0.96), rgba(28, 47, 36, 0.92));
+  border-color: var(--safelink-border);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.32), 0 0 30px rgba(56, 161, 105, 0.12);
+}
+
+html.theme-dark .ayuda-card h2 {
+  color: var(--safelink-green-strong);
+}
+
+html.theme-dark .ayuda-card p,
+html.theme-dark .burbuja.bot {
+  color: var(--safelink-text);
+}
+
+html.theme-dark .burbuja.bot {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: var(--safelink-border);
+}
+
+html.theme-dark .input-chat .mdc-text-field {
+  background-color: rgba(255, 255, 255, 0.06) !important;
+}
+
+html.theme-dark .admin-loading {
+  color: #93c5fd;
+}
+
+html.theme-dark .kit-badge {
+  background: linear-gradient(90deg, #2f8f46 0%, #38a169 100%);
+  color: #ffffff !important;
+  box-shadow: 0 8px 24px rgba(56, 161, 105, 0.18);
+}
+
+html.theme-dark .kit-hero p {
+  color: #e5e7eb !important;
+}
+
+html.theme-dark .item-card {
+  background: linear-gradient(180deg, #13261c 0%, #17251d 100%);
+  border-color: rgba(255, 255, 255, 0.14);
+}
+
+html.theme-dark .item-category {
+  background: rgba(110, 231, 168, 0.16);
+  border: 1px solid rgba(110, 231, 168, 0.22);
+  color: #bbf7d0 !important;
+}
+
+html.theme-dark .item-main strong {
+  color: #f8fafc !important;
+}
+
+html.theme-dark .item-icon {
+  background: rgba(110, 231, 168, 0.13);
+  color: #86efac !important;
+  box-shadow: 0 16px 30px rgba(0, 0, 0, 0.2);
+}
+
+html.theme-dark .item-icon mat-icon {
+  color: #86efac !important;
+}
+
+html.theme-dark .item-overlay {
+  background: linear-gradient(180deg, rgba(7, 38, 20, 0.92), rgba(20, 92, 41, 0.96) 78%, #041d0d);
+}
+
+html.theme-dark .item-overlay-content strong {
+  color: #ffffff !important;
+}
+
+html.theme-dark .item-overlay-content p,
+html.theme-dark .item-overlay-content .item-reason {
+  color: #e5e7eb !important;
+}
+
+html.theme-dark .item-overlay-content span {
+  background: rgba(255, 255, 255, 0.16);
+  color: #ffffff !important;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+html.theme-dark .features {
+  background: var(--safelink-bg);
+}
+
+html.theme-dark .features h2 {
+  color: #f8fafc !important;
+}
+
+html.theme-dark .features-sub,
+html.theme-dark .features-state {
+  color: #d1d5db !important;
+}
+
+html.theme-dark .scratch-card {
+  border-color: rgba(110, 231, 168, 0.22);
+  box-shadow: 0 24px 54px rgba(0, 0, 0, 0.32);
+}
+
+html.theme-dark .feat-top span {
+  background: rgba(110, 231, 168, 0.14);
+  border: 1px solid rgba(110, 231, 168, 0.22);
+  border-radius: 999px;
+  color: #bbf7d0 !important;
+  padding: 4px 10px;
+}
+
+html.theme-dark .feat-icon {
+  background: linear-gradient(135deg, #2f8f46, #38a169);
+}
+
+html.theme-dark .feat-icon mat-icon {
+  color: #ffffff !important;
+}
+
+html.theme-dark .tip-content h3 {
+  color: #f8fafc !important;
+}
+
+html.theme-dark .tip-content p {
+  color: #e5e7eb !important;
+}
+
+html.theme-dark .unlock-message {
+  background: rgba(110, 231, 168, 0.16);
+  border: 1px solid rgba(110, 231, 168, 0.24);
+  color: #bbf7d0 !important;
+}
+
+html.theme-dark .scratch-cover strong {
+  color: #ffffff !important;
+}
+
+html.theme-dark .scratch-cover span {
+  color: #e5e7eb !important;
+}
+
+html.theme-dark .carousel-dots button {
+  background: rgba(209, 213, 219, 0.3);
+}
+
+html.theme-dark .carousel-dots button.active {
+  background: #6ee7a8;
+}
+
+router-outlet + * {
+  display: block;
+  animation: routeFadeIn 220ms ease-out both;
+  will-change: opacity, transform;
+}
+
+@keyframes routeFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.995);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  router-outlet + * {
+    animation: none;
+    will-change: auto;
+  }
+}
+/* You can add global styles to this file, and also import other style files */

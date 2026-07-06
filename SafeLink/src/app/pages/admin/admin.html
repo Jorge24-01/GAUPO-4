@@ -1,0 +1,89 @@
+<div class="admin-page">
+  <header class="admin-header">
+    <div>
+      <h1>{{ 'admin.tituloPanel' | transloco }}</h1>
+      <p>{{ 'admin.descripcionPanel' | transloco }}</p>
+    </div>
+  </header>
+
+  <div class="admin-status" *ngIf="error()">
+    <p class="error" role="alert">{{ error() }}</p>
+  </div>
+
+  <div class="admin-loading" *ngIf="cargando()" role="status" aria-live="polite">
+    {{ 'admin.cargando' | transloco }}
+  </div>
+
+  <section class="admin-section" *ngIf="!cargando()">
+    <h2>{{ 'admin.usuariosRegistrados' | transloco }}</h2>
+    <div class="grid-list" *ngIf="usuarios().length; else sinUsuarios">
+      <article class="card" *ngFor="let usuario of usuarios()">
+        <strong>{{ usuario.nombre }} {{ usuario.apellido }}</strong>
+        <span class="label">{{ 'admin.labelEmail' | transloco }}</span>
+        <p>{{ usuario.email || usuario.correo || ('admin.noDefinido' | transloco) }}</p>
+        <span class="label">{{ 'admin.labelTipoUsuario' | transloco }}</span>
+        <p>{{ usuario.tipoUsuario || usuario.rol || usuario.tipo || ('admin.noDefinido' | transloco) }}</p>
+        <span class="label">{{ 'admin.labelTelefono' | transloco }}</span>
+        <p>{{ usuario.telefono || ('admin.noDefinido' | transloco) }}</p>
+        <span class="label">{{ 'admin.labelDistrito' | transloco }}</span>
+        <p>{{ usuario.distrito || ('admin.noDefinido' | transloco) }}</p>
+        <span class="label">{{ 'admin.labelFamiliasYFamiliares' | transloco }}</span>
+        <div class="admin-family-list" *ngIf="familiasDelUsuario(usuario).length; else sinFamiliaUsuario">
+          <div class="admin-family-member" *ngFor="let familia of familiasDelUsuario(usuario)">
+            <strong>{{ familia.nombre }}</strong>
+            <div *ngIf="familia.familiares.length; else sinFamiliaresUsuario">
+              <p *ngFor="let familiar of familia.familiares">
+                {{ familiar.nombre }} - {{ familiar.relacion || ('admin.familiar' | transloco) }} - {{ familiar.telefono || ('admin.telefonoNoDefinido' | transloco) }}
+              </p>
+            </div>
+          </div>
+        </div>
+        <ng-template #sinFamiliaUsuario>
+          <p>{{ 'admin.sinFamiliasUsuario' | transloco }}</p>
+        </ng-template>
+        <ng-template #sinFamiliaresUsuario>
+          <p>{{ 'admin.sinFamiliaresUsuario' | transloco }}</p>
+        </ng-template>
+        <button mat-stroked-button
+                color="warn"
+                class="btn-eliminar"
+                *ngIf="puedeEliminarUsuario(usuario)"
+                [disabled]="eliminandoId() === idCuenta(usuario)"
+                [attr.aria-label]="('admin.eliminarCuenta' | transloco) + ' ' + usuario.nombre + ' ' + usuario.apellido"
+                (click)="eliminarCuenta(usuario)">
+          <mat-icon aria-hidden="true">delete</mat-icon>
+          {{ eliminandoId() === idCuenta(usuario) ? ('admin.eliminando' | transloco) : ('admin.eliminarCuenta' | transloco) }}
+        </button>
+      </article>
+    </div>
+    <ng-template #sinUsuarios>
+      <p>{{ 'admin.sinUsuarios' | transloco }}</p>
+    </ng-template>
+  </section>
+
+  <section class="admin-section" *ngIf="!cargando()">
+    <h2>{{ 'admin.familiasRegistradas' | transloco }}</h2>
+    <div class="grid-list" *ngIf="familias().length; else sinFamilias">
+      <article class="card family-admin-card" *ngFor="let familia of familias()">
+        <strong>{{ familia.nombre }}</strong>
+        <span class="label">{{ 'admin.labelUsuario' | transloco }}</span>
+        <p>{{ familia.usuarioNombre || familia.usuarioCorreo || (familia.idUsuario ? (('admin.idPrefijo' | transloco) + ' ' + familia.idUsuario) : ('admin.noAsignado' | transloco)) }}</p>
+        <span class="label">{{ 'admin.labelFamiliares' | transloco }}</span>
+        <div class="admin-family-list" *ngIf="familia.familiares.length; else familiaVacia">
+          <div class="admin-family-member" *ngFor="let familiar of familia.familiares">
+            <strong>{{ familiar.nombre }}</strong>
+            <p>{{ familiar.relacion || ('admin.familiar' | transloco) }} - {{ familiar.telefono || ('admin.telefonoNoDefinido' | transloco) }}</p>
+            <p>{{ familiar.ubicacionHabitual || familiar.ubicacion || ('admin.ubicacionNoDefinida' | transloco) }}</p>
+            <p>{{ 'admin.estado' | transloco }}: {{ familiar.estado || ('admin.pendiente' | transloco) }}</p>
+          </div>
+        </div>
+        <ng-template #familiaVacia>
+          <p>{{ 'admin.sinFamiliares' | transloco }}</p>
+        </ng-template>
+      </article>
+    </div>
+    <ng-template #sinFamilias>
+      <p>{{ 'admin.sinFamilias' | transloco }}</p>
+    </ng-template>
+  </section>
+</div>

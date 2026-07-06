@@ -1,0 +1,74 @@
+<mat-toolbar class="navbar">
+
+  <a routerLink="/inicio" class="logo">
+    <div class="logo-leaf"><mat-icon aria-hidden="true">eco</mat-icon></div>
+    <span>SafeLink</span>
+  </a>
+
+  <nav class="nav-links">
+    <a mat-button routerLink="/inicio"  routerLinkActive="link-activo">{{ 'menu.inicio' | transloco }}</a>
+    <a mat-button routerLink="/mapa"    routerLinkActive="link-activo">{{ 'menu.mapa' | transloco }}</a>
+    <a mat-button routerLink="/kit"     routerLinkActive="link-activo">{{ 'menu.kit' | transloco }}</a>
+    <a mat-button routerLink="/familia" routerLinkActive="link-activo">{{ 'menu.familia' | transloco }}</a>
+    <a mat-button routerLink="/ayuda"   routerLinkActive="link-activo">{{ 'menu.ayuda' | transloco }}</a>
+    @if (auth.isAdmin()) {
+      <a mat-button routerLink="/admin" routerLinkActive="link-activo">{{ 'menu.admin' | transloco }}</a>
+    }
+  </nav>
+
+  <span class="spacer"></span>
+
+  <button
+    mat-icon-button
+    type="button"
+    class="lang-toggle"
+    (click)="cambiarIdioma()"
+    [attr.aria-label]="'menu.idioma' | transloco"
+  >
+    <span aria-hidden="true">{{ idiomaActual() === 'es-419' ? 'ES' : 'EN' }}</span>
+  </button>
+
+  <button
+    mat-icon-button
+    type="button"
+    class="theme-toggle"
+    (click)="theme.toggleTheme()"
+    [attr.aria-label]="theme.isDarkMode() ? ('menu.temaClaro' | transloco) : ('menu.temaOscuro' | transloco)"
+    [attr.title]="theme.isDarkMode() ? ('menu.temaClaro' | transloco) : ('menu.temaOscuro' | transloco)"
+  >
+    <mat-icon aria-hidden="true">{{ theme.isDarkMode() ? 'light_mode' : 'dark_mode' }}</mat-icon>
+  </button>
+
+  @if (auth.isLoggedIn()) {
+    <button mat-button class="user-button" [matMenuTriggerFor]="menuUsuario">
+      <span class="user-avatar" aria-hidden="true">{{ auth.inicialesUsuario() }}</span>
+      <span class="user-summary">
+        <span class="user-name">{{ auth.nombreUsuario() }}</span>
+        @if (auth.tipoUsuario()) {
+          <span class="user-type">{{ auth.tipoUsuario() }}</span>
+        }
+      </span>
+    </button>
+    <mat-menu #menuUsuario="matMenu">
+      <button mat-menu-item (click)="auth.logout()">
+        <mat-icon aria-hidden="true">logout</mat-icon> {{ 'menu.cerrarSesion' | transloco }}
+      </button>
+    </mat-menu>
+  } @else {
+    <a mat-stroked-button routerLink="/login" class="btn-sesion">{{ 'menu.iniciarSesion' | transloco }}</a>
+  }
+
+</mat-toolbar>
+
+<main class="contenido">
+  <router-outlet></router-outlet>
+</main>
+
+<footer class="footer">
+  <span>{{ 'menu.footer.copyright' | transloco }}</span>
+  <div class="footer-links">
+    <a href="#">{{ 'menu.footer.privacidad' | transloco }}</a>
+    <a href="#">{{ 'menu.footer.terminos' | transloco }}</a>
+    <a href="#">{{ 'menu.footer.contacto' | transloco }}</a>
+  </div>
+</footer>

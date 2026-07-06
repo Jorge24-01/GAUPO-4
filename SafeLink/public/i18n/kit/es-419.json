@@ -1,0 +1,38 @@
+{
+  "heroBadge": "Kit de Emergencia Recomendado",
+  "heroTitulo": "Kit de Emergencia<br>Recomendado",
+  "heroDescripcion": "Asegúrate de tener lo necesario antes de cualquier emergencia.",
+  "elementosDelKit": "Elementos del kit",
+  "cargando": "Cargando recomendaciones del kit...",
+  "itemRecomendado": "Item recomendado",
+  "estadoRecomendado": "Estado: Recomendado",
+  "porQueTenerlo": "Por que tenerlo: ayuda a cubrir necesidades de {{categoria}} y mantiene el kit listo ante una emergencia.",
+  "preparacionDefault": "preparacion",
+  "sinRecomendaciones": "No hay recomendaciones disponibles desde el backend por el momento.",
+  "errorCarga": "No se pudieron cargar las recomendaciones del kit.",
+  "contacto": "Contacto: info@safelink.com",
+  "politicaPrivacidad": "Política de Privacidad",
+  "terminosCondiciones": "Términos y Condiciones",
+  "cantidadRecomendada": "Cantidad recomendada: {{cantidad}}",
+  "estadoEtiqueta": "Estado: {{estado}}",
+  "elementoGenerico": "Este elemento",
+  "descripcionGenerica": "{{base}} ayuda a cubrir necesidades básicas de {{categoria}} durante una emergencia.",
+  "estado": {
+    "completo": "Completo",
+    "pendiente": "Pendiente",
+    "disponible": "Disponible",
+    "recomendado": "Recomendado"
+  },
+  "categorias": {
+    "agua": "Agua",
+    "medicamento": "Medicamento",
+    "herramienta": "Herramienta",
+    "comunicacion": "Comunicación",
+    "documentos": "Documentos",
+    "alimentos": "Alimentos",
+    "abrigo": "Abrigo",
+    "proteccion": "Protección",
+    "alimento": "Alimento",
+    "otros": "Otros"
+  }
+}

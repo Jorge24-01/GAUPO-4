@@ -1,0 +1,172 @@
+.familia-page {
+  padding: 34px 36px;
+}
+
+.familia-head {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+.familia-head span {
+  display: inline-block;
+  margin-bottom: 12px;
+  font-size: 12px;
+  text-transform: uppercase;
+  color: #3a8c4e;
+  letter-spacing: 0.08em;
+}
+
+.familia-head h1 {
+  margin: 0;
+  font-size: 34px;
+  line-height: 1.1;
+  color: #1d4228;
+}
+
+.familia-head p {
+  max-width: 680px;
+  color: #585c57;
+  margin-top: 12px;
+  font-size: 15px;
+  line-height: 1.8;
+  text-align: center;
+}
+
+.familia-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 24px;
+}
+
+.familia-form, .familia-list {
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 12px 32px rgba(38, 67, 32, 0.06);
+  padding: 28px;
+}
+
+.form-card h2, .list-card h2 {
+  margin: 0 0 10px;
+  font-size: 22px;
+  color: #1d4228;
+}
+
+.form-card p {
+  margin: 0 0 24px;
+  color: #5b6558;
+  font-size: 14px;
+  line-height: 1.75;
+}
+
+.full {
+  width: 100%;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.mat-form-field {
+  width: 100%;
+}
+
+.family-field {
+  width: 100%;
+}
+
+::ng-deep .family-field .mat-mdc-form-field-infix {
+  min-height: 54px;
+  padding-top: 16px;
+  padding-bottom: 10px;
+}
+
+::ng-deep .family-field .mat-mdc-input-element::placeholder {
+  color: #8a9386;
+  opacity: 1;
+}
+
+.btn-verde {
+  width: 100%;
+  margin-top: 16px;
+  background: #3a8c4e !important;
+  color: white !important;
+  border-radius: 10px !important;
+  height: 45px;
+  font-weight: 700 !important;
+}
+
+.family-row {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 14px;
+  align-items: center;
+  padding: 18px 0;
+  border-bottom: 1px solid #ebf0e9;
+}
+
+.family-row:last-child {
+  border-bottom: none;
+}
+
+.family-avatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 18px;
+  background: #eaf5e9;
+  display: grid;
+  place-items: center;
+  color: #217a34;
+}
+
+.family-avatar mat-icon {
+  font-size: 24px;
+}
+
+.family-info strong {
+  display: block;
+  font-size: 15px;
+  color: #1d4228;
+}
+
+.family-info span {
+  display: block;
+  color: #5a6359;
+  font-size: 13px;
+  margin-top: 4px;
+}
+
+.family-info small {
+  display: block;
+  margin-top: 6px;
+  color: #777f6e;
+  font-size: 12px;
+}
+
+.family-status {
+  font-size: 12px;
+  font-weight: 700;
+  padding: 8px 12px;
+  border-radius: 999px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+.family-status.secure {
+  background: rgba(58, 140, 78, 0.12);
+  color: #2b7031;
+}
+
+.family-status.alert {
+  background: rgba(227, 70, 70, 0.12);
+  color: #c42828;
+}
+
+@media (max-width: 960px) {
+  .familia-grid {
+    grid-template-columns: 1fr;
+  }
+}

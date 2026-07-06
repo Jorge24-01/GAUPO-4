@@ -1,0 +1,14 @@
+{
+  "titulo": "SafeLink Assistant",
+  "subtitulo": "Type your question and the assistant will give you a basic answer.",
+  "chatLog": "Conversation history with the SafeLink Assistant",
+  "escribiendo": "Typing...",
+  "campoPregunta": "Type your question",
+  "btnEnviar": "Send",
+  "btnEnviarAria": "Send question to the assistant",
+  "btnLimpiar": "Clear",
+  "btnLimpiarAria": "Clear the conversation",
+  "mensajeInicial": "Hi, I'm the SafeLink Assistant. You can check the available frequently asked questions.",
+  "noPudeGenerar": "I couldn't generate an answer.",
+  "noEncontreRespuesta": "I couldn't find an answer among the available frequently asked questions."
+}

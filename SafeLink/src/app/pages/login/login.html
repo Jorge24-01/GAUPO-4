@@ -1,0 +1,82 @@
+<div class="auth-wrap">
+
+  <div class="auth-left">
+    <div class="auth-brand">
+      <div class="brand-icon"><mat-icon>eco</mat-icon></div>
+      <span>{{ 'login.marca' | transloco }}</span>
+    </div>
+    <h2 [innerHTML]="'login.heroTitulo' | transloco"></h2>
+    <p>{{ 'login.heroDescripcion' | transloco }}</p>
+    <div class="auth-feature">
+      <div class="feat-icon"><mat-icon>notifications_active</mat-icon></div>
+      <div>
+        <strong>{{ 'login.alertasTitulo' | transloco }}</strong>
+        <span>{{ 'login.alertasDescripcion' | transloco }}</span>
+      </div>
+    </div>
+    <div class="auth-feature">
+      <div class="feat-icon"><mat-icon>group</mat-icon></div>
+      <div>
+        <strong>{{ 'login.redTitulo' | transloco }}</strong>
+        <span>{{ 'login.redDescripcion' | transloco }}</span>
+      </div>
+    </div>
+    <div class="auth-feature">
+      <div class="feat-icon"><mat-icon>lock</mat-icon></div>
+      <div>
+        <strong>{{ 'login.datosTitulo' | transloco }}</strong>
+        <span>{{ 'login.datosDescripcion' | transloco }}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="auth-right">
+    <h3>{{ 'login.bienvenido' | transloco }}</h3>
+    <p class="auth-sub">{{ 'login.subtitulo' | transloco }}</p>
+
+    <form [formGroup]="form" (ngSubmit)="ingresar()">
+
+      <mat-form-field appearance="outline" class="full">
+        <mat-label>{{ 'login.emailLabel' | transloco }}</mat-label>
+        <input matInput type="email" formControlName="email" [attr.aria-label]="'login.emailLabel' | transloco" />
+        <mat-icon matPrefix>mail_outline</mat-icon>
+        @if (form.controls.email.touched && form.controls.email.errors?.['required']) {
+          <mat-error>{{ 'login.emailRequerido' | transloco }}</mat-error>
+        }
+        @if (form.controls.email.errors?.['email']) {
+          <mat-error>{{ 'login.emailInvalido' | transloco }}</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full">
+        <mat-label>{{ 'login.passwordLabel' | transloco }}</mat-label>
+        <input matInput [type]="hidePass ? 'password' : 'text'" formControlName="password" [attr.aria-label]="'login.passwordLabel' | transloco" />
+        <mat-icon matPrefix>lock_outline</mat-icon>
+        <button mat-icon-button matSuffix type="button" (click)="hidePass = !hidePass"
+          [attr.aria-label]="(hidePass ? 'login.mostrarPassword' : 'login.ocultarPassword') | transloco"
+          [attr.aria-pressed]="!hidePass">
+          <mat-icon>{{ hidePass ? 'visibility_off' : 'visibility' }}</mat-icon>
+        </button>
+        @if (form.controls.password.touched && form.controls.password.errors?.['required']) {
+          <mat-error>{{ 'login.passwordRequerido' | transloco }}</mat-error>
+        }
+        @if (form.controls.password.errors?.['minlength']) {
+          <mat-error>{{ 'login.passwordMinimo' | transloco }}</mat-error>
+        }
+      </mat-form-field>
+
+      <div class="forgot-row">
+        <a href="#" class="forgot">{{ 'login.olvidasteContrasena' | transloco }}</a>
+      </div>
+
+      <button mat-flat-button class="btn-verde full" type="submit">{{ 'login.ingresar' | transloco }}</button>
+
+      <div class="divider"><span>{{ 'login.noTienesCuenta' | transloco }}</span></div>
+
+      <a mat-stroked-button routerLink="/registro" class="btn-outline-verde full">
+        {{ 'login.registrarse' | transloco }}
+      </a>
+    </form>
+  </div>
+
+</div>

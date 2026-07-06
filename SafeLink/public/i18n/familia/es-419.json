@@ -1,0 +1,43 @@
+{
+  "tituloPagina": "Registrar Familia Segura",
+  "subtitulo": "Registra a tus seres queridos y verifica su estado en emergencia.",
+  "form": {
+    "tituloTarjeta": "Registro Familiar",
+    "descripcionTarjeta": "La información será visible solo para ti y tu familia.",
+    "nombreLabel": "Nombre",
+    "nombrePlaceholder": "Ingrese un nombre",
+    "nombreRequerido": "El nombre es obligatorio",
+    "telefonoLabel": "Teléfono",
+    "telefonoPlaceholder": "Número de contacto",
+    "telefonoRequerido": "El teléfono es obligatorio",
+    "telefonoInvalido": "Ingresa un número válido",
+    "relacionLabel": "Relación",
+    "ubicacionLabel": "Ubicación habitual",
+    "ubicacionPlaceholder": "Ej. Colegio, casa, trabajo",
+    "btnRegistrar": "Registrar Familia",
+    "btnRegistrando": "Registrando..."
+  },
+  "lista": {
+    "tituloTarjeta": "Estado de la Familia",
+    "familiarFallback": "Familiar",
+    "telefonoNoDefinido": "Teléfono no definido",
+    "ubicacionNoDefinida": "Ubicación no definida",
+    "estadoPendiente": "Pendiente",
+    "cargando": "Cargando familiares registrados...",
+    "sinFamiliares": "No hay familiares registrados por el momento.",
+    "avatarAriaLabel": "Ícono de familiar"
+  },
+  "relaciones": {
+    "pareja": "Pareja",
+    "hijo": "Hijo",
+    "padre": "Padre",
+    "madre": "Madre",
+    "otro": "Otro"
+  },
+  "mensajes": {
+    "errorCargaFamilia": "No se pudo cargar la familia registrada.",
+    "sesionNoEncontrada": "No se encontró el usuario de la sesión. Vuelve a iniciar sesión.",
+    "familiarRegistrado": "Familiar registrado correctamente.",
+    "errorRegistro": "No se pudo registrar el familiar. Revisa los datos e intenta nuevamente."
+  }
+}

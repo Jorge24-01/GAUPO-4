@@ -1,0 +1,39 @@
+<section class="kit-hero">
+  <div class="kit-content">
+    <span class="kit-badge">{{ 'kit.heroBadge' | transloco }}</span>
+    <h1 [innerHTML]="'kit.heroTitulo' | transloco"></h1>
+    <p>{{ 'kit.heroDescripcion' | transloco }}</p>
+  </div>
+</section>
+
+<section class="kit-grid">
+  <div class="kit-card" role="group" [attr.aria-label]="'kit.elementosDelKit' | transloco">
+    <p class="kit-loading" *ngIf="cargando">{{ 'kit.cargando' | transloco }}</p>
+    <div class="item-card" *ngFor="let item of items">
+      <div class="item-main">
+        <div class="item-icon" aria-hidden="true"><mat-icon>{{ item.icon }}</mat-icon></div>
+        <small class="item-category" *ngIf="item.category">{{ item.category }}</small>
+        <strong>{{ item.title || ('kit.itemRecomendado' | transloco) }}</strong>
+      </div>
+
+      <div class="item-overlay">
+        <div class="item-overlay-content">
+          <strong>{{ item.title || ('kit.itemRecomendado' | transloco) }}</strong>
+          <p>{{ item.description }}</p>
+          <span *ngIf="item.quantity">{{ item.quantity }}</span>
+          <span>{{ item.status || ('kit.estadoRecomendado' | transloco) }}</span>
+          <p class="item-reason">{{ 'kit.porQueTenerlo' | transloco: { categoria: item.category || ('kit.preparacionDefault' | transloco) } }}</p>
+        </div>
+      </div>
+    </div>
+    <p class="kit-empty" *ngIf="!cargando && !items.length">{{ mensaje }}</p>
+  </div>
+</section>
+
+<footer class="kit-footer">
+  <p>{{ 'kit.contacto' | transloco }}</p>
+  <div class="kit-links">
+    <a href="#">{{ 'kit.politicaPrivacidad' | transloco }}</a>
+    <a href="#">{{ 'kit.terminosCondiciones' | transloco }}</a>
+  </div>
+</footer>

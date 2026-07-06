@@ -1,0 +1,253 @@
+.hero {
+  display: grid; grid-template-columns: 1fr 1fr;
+  min-height: 520px; background: #e8f5ec;
+}
+.hero-left {
+  padding: 64px 52px 52px;
+  display: flex; flex-direction: column; justify-content: center;
+}
+.hero-tag {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: rgba(58,140,78,0.14); color: #3a8c4e;
+  font-size: 11px; font-weight: 700; padding: 4px 12px;
+  border-radius: 20px; letter-spacing: 0.06em;
+  text-transform: uppercase; margin-bottom: 20px; width: fit-content;
+  mat-icon { font-size: 14px; height: 14px; width: 14px; }
+}
+h1 {
+  font-size: 42px; font-weight: 800; line-height: 1.12;
+  color: #1a1a1a; margin-bottom: 18px; letter-spacing: -0.8px;
+}
+.verde { color: #3a8c4e; }
+.hero-left p { font-size: 15px; color: #555; line-height: 1.8; margin-bottom: 30px; max-width: 520px; }
+.hero-btns { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 36px; }
+.btn-primary-verde {
+  background: #3a8c4e !important; color: white !important;
+  font-weight: 700 !important; border-radius: 9px !important; padding: 10px 24px !important;
+}
+.btn-outline-verde {
+  color: #3a8c4e !important; border-color: #3a8c4e !important;
+  font-weight: 700 !important; border-radius: 9px !important;
+}
+.hero-highlights {
+  display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px;
+}
+.highlight-card {
+  display: flex; gap: 14px; padding: 18px;
+  background: white; border-radius: 18px; border: 1px solid rgba(58,140,78,0.12);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.04);
+}
+.highlight-card mat-icon {
+  font-size: 22px; color: #3a8c4e; min-width: 34px; min-height: 34px;
+}
+.highlight-card strong {
+  display: block; font-size: 13px; font-weight: 700; color: #1e1e1e; margin-bottom: 6px;
+}
+.highlight-card span {
+  display: block; font-size: 12px; color: #6f6f6f; line-height: 1.5;
+}
+.hero-right {
+  display: flex; align-items: center; justify-content: center;
+  padding: 40px;
+}
+.illustration-card {
+  position: relative; width: 100%; max-width: 460px; min-height: 420px;
+  background: linear-gradient(180deg, #ffffff 0%, #f1fbf2 100%);
+  border-radius: 38px; box-shadow: 0 30px 70px rgba(0,0,0,0.08);
+  overflow: hidden; padding: 40px;
+}
+.hero-figure {
+  position: absolute; width: 120px; height: 120px; border-radius: 32px;
+  background: #3a8c4e; opacity: 0.95;
+}
+.hero-figure::before {
+  content: '';
+  position: absolute; inset: 18px 16px auto auto;
+  width: 40px; height: 40px; border-radius: 50%; background: #d7f1d9;
+}
+.hero-figure-left { top: 28px; left: 24px; transform: rotate(-4deg); }
+.hero-figure-center { top: 12px; right: 28px; width: 160px; height: 160px; border-radius: 40px; }
+.hero-figure-right { bottom: 32px; left: 50px; width: 112px; height: 112px; border-radius: 30px; opacity: 0.88; }
+.hero-screen {
+  position: relative; margin: 0 auto; width: 78%; min-height: 280px;
+  background: #ffffff; border-radius: 32px; border: 1px solid rgba(58,140,78,0.18);
+  box-shadow: 0 18px 36px rgba(0,0,0,0.08);
+  z-index: 1; overflow: hidden;
+}
+.screen-top {
+  height: 32px; background: #eef9f0; border-bottom: 1px solid rgba(58,140,78,0.12);
+}
+.screen-content { padding: 20px; }
+.dot-row { display: flex; gap: 8px; margin-bottom: 18px; }
+.dot-row span {
+  width: 10px; height: 10px; border-radius: 50%; background: #3a8c4e;
+  opacity: 0.75;
+}
+.map-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px;
+}
+.map-grid span {
+  height: 80px; border-radius: 20px; background: linear-gradient(135deg, #e5f7e7, #ffffff);
+  box-shadow: inset 0 4px 12px rgba(58,140,78,0.08);
+}
+.features { padding: 56px 60px; background: white; }
+.features h2 { text-align: center; font-size: 26px; font-weight: 800; margin-bottom: 8px; }
+.features-sub { text-align: center; font-size: 13px; color: #666; margin-bottom: 38px; }
+.features-state {
+  margin: 0;
+  color: #666;
+  text-align: center;
+  font-size: 13px;
+}
+
+.tips-carousel {
+  max-width: 860px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 48px minmax(0, 1fr) 48px;
+  gap: 18px;
+  align-items: center;
+}
+
+.carousel-btn {
+  width: 48px; height: 48px; border: 0; border-radius: 50%;
+  background: #e8f5ec; color: #2f7a42; display: grid; place-items: center;
+  cursor: pointer; box-shadow: 0 10px 22px rgba(58,140,78,0.12);
+  transition: transform 0.2s, background 0.2s, opacity 0.2s;
+}
+.carousel-btn:hover:not(:disabled) { background: #dff1e3; transform: translateY(-2px); }
+.carousel-btn:disabled { cursor: default; opacity: 0.35; }
+
+.scratch-card {
+  width: min(100%, 680px);
+  min-height: 280px;
+  justify-self: center;
+  position: relative;
+  overflow: hidden;
+  border-radius: 26px;
+  background:
+    radial-gradient(circle at 14% 18%, rgba(58,140,78,0.18), transparent 28%),
+    radial-gradient(circle at 88% 78%, rgba(102,187,106,0.16), transparent 30%),
+    linear-gradient(145deg, #f1fbf3, #dff2e4);
+  border: 1px solid rgba(58,140,78,0.24);
+  box-shadow: 0 24px 54px rgba(24,73,36,0.18);
+  user-select: none;
+  touch-action: none;
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+.scratch-card:hover { transform: translateY(-3px); box-shadow: 0 30px 64px rgba(24,73,36,0.18); }
+.scratch-card.unlocked {
+  min-height: 280px;
+}
+
+.tip-content {
+  min-height: 280px;
+  padding: 30px 38px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  transition: opacity 0.28s, filter 0.28s, transform 0.28s;
+}
+.tip-content::before {
+  content: '';
+  position: absolute;
+  inset: 16px;
+  border-radius: 20px;
+  border: 1px solid rgba(58,140,78,0.12);
+  background: rgba(255,255,255,0.38);
+  pointer-events: none;
+}
+.tip-content > * { position: relative; z-index: 1; }
+.scratch-card:not(.unlocked) .tip-content { opacity: 1; filter: none; transform: none; }
+.scratch-card.unlocked .tip-content {
+  min-height: 280px;
+}
+.scratch-card.unlocked .feat-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 11px;
+}
+.scratch-card.unlocked .unlock-message {
+  margin: 0 auto 10px;
+}
+
+.scratch-cover {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  opacity: 1;
+  transition: opacity 0.28s ease;
+}
+.scratch-cover.cover-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.scratch-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.unlock-message {
+  width: fit-content;
+  margin-bottom: 12px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(58,140,78,0.16);
+  color: #226b34;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 22px;
+}
+.carousel-dots button {
+  width: 9px; height: 9px; border: 0; border-radius: 999px;
+  background: rgba(58,140,78,0.24); cursor: pointer;
+  transition: width 0.2s, background 0.2s;
+}
+.carousel-dots button.active { width: 26px; background: #3a8c4e; }
+
+.feat-top {
+  width: 100%;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; margin-bottom: 10px;
+}
+.feat-top span {
+  font-size: 10px; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: #226b34;
+}
+.feat-icon {
+  width: 42px; height: 42px; border-radius: 11px; background: linear-gradient(135deg, #3a8c4e, #2f7a42);
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 10px 22px rgba(58,140,78,0.18);
+}
+.feat-icon mat-icon { color: white; font-size: 22px; }
+.tip-content h3 { max-width: 520px; font-size: 25px; font-weight: 800; margin: 0 0 10px; color: #10321d; }
+.tip-content p  { max-width: 560px; font-size: 15px; color: #304b38; line-height: 1.75; margin: 0; }
+
+@media (max-width: 720px) {
+  .features { padding: 42px 20px; }
+  .tips-carousel { grid-template-columns: 42px minmax(0, 1fr) 42px; gap: 10px; }
+  .carousel-btn { width: 42px; height: 42px; }
+  .tip-content { padding: 28px 22px; }
+  .scratch-card,
+  .scratch-card.unlocked {
+    min-height: 260px;
+  }
+  .tip-content,
+  .scratch-card.unlocked .tip-content {
+    min-height: 260px;
+    padding: 24px 18px;
+  }
+  .tip-content h3 { font-size: 21px; }
+}
