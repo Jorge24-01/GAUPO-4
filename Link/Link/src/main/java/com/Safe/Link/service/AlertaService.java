@@ -21,11 +21,11 @@ public class AlertaService {
 
     public AlertaDTO create(AlertaDTO dto){
         Usuario usuario = usuarioRepository.findById(dto.getIdUsuario())
-                .orElseThrow(()->new IllegalArgumentException("Usuario no encontrado: " + dto.getIdUsuario()));
+                .orElseThrow(()->new IllegalArgumentException("usuario.no.encontrado"));
         if (dto.getTipoAlerta() == null || dto.getTipoAlerta().isBlank())
-            throw new IllegalArgumentException("El tipo de alerta es obligatorio");
+            throw new IllegalArgumentException("alerta.tipo.obligatorio");
         if (dto.getLatitud() == null || dto.getLongitud() == null)
-            throw new IllegalArgumentException("Las coordenadas son obligatorias");
+            throw new IllegalArgumentException("coordenadas.obligatorias");
         Alerta a = new Alerta();
         a.setUsuario(usuario);
         a.setTipoAlerta(dto.getTipoAlerta());
@@ -44,12 +44,12 @@ public class AlertaService {
 
     public AlertaDTO getById(Long id){
         return toDTO(repository.findById(id)
-                .orElseThrow(()->new IllegalArgumentException("Alerta no encontrada: " + id)));
+                .orElseThrow(()->new IllegalArgumentException("alerta.no.encontrada")));
     }
 
     public List<AlertaDTO> getByUsuario(Long idUsuario){
         if (!usuarioRepository.existsById(idUsuario))
-            throw new IllegalArgumentException("Usuario no encontrado: " + idUsuario);
+            throw new IllegalArgumentException("usuario.no.encontrado");
         return repository.findAll().stream()
                 .filter(a -> a.getUsuario().getId().equals(idUsuario))
                 .map(this::toDTO).collect(Collectors.toList());
@@ -57,7 +57,7 @@ public class AlertaService {
 
     public AlertaDTO update(Long id, AlertaDTO dto){
         Alerta a = repository.findById(id)
-                .orElseThrow(()->new IllegalArgumentException("Alerta no encontrada: " + id));
+                .orElseThrow(()->new IllegalArgumentException("alerta.no.encontrada"));
         a.setTipoAlerta(dto.getTipoAlerta());
         a.setMensaje(dto.getMensaje());
         a.setLatitud(dto.getLatitud());
@@ -68,7 +68,7 @@ public class AlertaService {
 
     public void delete(Long id){
         if (!repository.existsById(id))
-            throw new IllegalArgumentException("Alerta no encontrada: " + id);
+            throw new IllegalArgumentException("alerta.no.encontrada");
         repository.deleteById(id);
     }
 

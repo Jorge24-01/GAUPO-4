@@ -20,9 +20,9 @@ public class IncidenteService {
 
     public IncidenteDTO create(IncidenteDTO dto){
         if (dto.getTipo() == null || dto.getTipo().isBlank())
-            throw new IllegalArgumentException("El tipo de incidente es obligatorio");
+            throw new IllegalArgumentException("incidente.tipo.obligatorio");
         Usuario usuario = usuarioRepository.findById(dto.getIdUsuario())
-                .orElseThrow(()-> new IllegalArgumentException("Usuario no encontrado"));
+                .orElseThrow(()-> new IllegalArgumentException("usuario.no.encontrado"));
         Incidente e= new Incidente();
         e.setUsuario(usuario); e.setTipo(dto.getTipo());
         e.setDescripcion(dto.getDescripcion());
@@ -34,7 +34,7 @@ public class IncidenteService {
     public List<IncidenteDTO>getByEstado(String estado){
         List<String>validos= List.of("reportado", "verificado", "resuelto");
         if (!validos.contains(estado))
-            throw new IllegalArgumentException("Estado invalido: " + estado);
+            throw new IllegalArgumentException("estado.invalido");
         return repository.findByEstado(estado).stream()
                 .map(this::toDTO).collect(Collectors.toList());
     }
@@ -47,14 +47,14 @@ public class IncidenteService {
     public List<IncidenteDTO>getByTipo(String tipo){
         List<String>validos=List.of("sismo","inundacion","incendio","deslizamiento","otro");
         if (!validos.contains(tipo))
-         throw new IllegalArgumentException("Tipo invalido : " + tipo);
+         throw new IllegalArgumentException("tipo.invalido");
         return repository.findByTipo(tipo).stream()
                 .map(this::toDTO).collect(Collectors.toList());
     }
 
     public IncidenteDTO update(Long id, IncidenteDTO dto){
         Incidente i = repository.findById(id)
-                .orElseThrow(()->new IllegalArgumentException("Incidente no encontrado: " + id));
+                .orElseThrow(()->new IllegalArgumentException("incidente.no.encontrado"));
         i.setTipo(dto.getTipo());
         i.setDescripcion(dto.getDescripcion());
         i.setLatitud(dto.getLatitud());
@@ -65,7 +65,7 @@ public class IncidenteService {
 
     public void delete(Long id){
         if (!repository.existsById(id))
-            throw new IllegalArgumentException("Incidente no encontrado: " + id);
+            throw new IllegalArgumentException("incidente.no.encontrado");
         repository.deleteById(id);
     }
 

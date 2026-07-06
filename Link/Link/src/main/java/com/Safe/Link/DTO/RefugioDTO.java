@@ -11,6 +11,7 @@ public class RefugioDTO {
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private Long id;
     private String nombre;
+    private String tipo;
     private String direccion;
     private Double latitud;
     private Double longitud;

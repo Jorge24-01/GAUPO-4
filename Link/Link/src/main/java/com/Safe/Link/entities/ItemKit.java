@@ -19,6 +19,8 @@ public class ItemKit {
     private Long id;
     @Column(name = "nombre_item", nullable = false, length = 150)
     private String nombreItem;
+    @Column(name = "nombre_item_en", length = 150)
+    private String nombreItemEn;
     @Column(name = "categoria", nullable = false, length = 50)
     private String categoria;
     @Column(name = "cantidad_recomendada")

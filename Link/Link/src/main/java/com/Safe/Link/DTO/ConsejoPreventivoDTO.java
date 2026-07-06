@@ -9,6 +9,7 @@ import lombok.*;
 public class ConsejoPreventivoDTO {
     private Long id;
     private String contenido;
+    private String contenidoEn;
     private String tipoDesastre;
     private String categoria;
     private Integer ordenVisualizacion;

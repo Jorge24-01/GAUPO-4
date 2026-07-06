@@ -6,6 +6,8 @@ import com.Safe.Link.service.ReporteProblemaService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.MessageSource;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,18 +19,13 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class ReporteProblemaController {
     private final ReporteProblemaService service;
+    private final MessageSource messageSource;
 
     @PostMapping
     public ResponseEntity<?> crear(@RequestBody ReporteProblemaDTO dto) {
-        try {
-            ReporteProblema reporte = service.crear(dto);
-            return ResponseEntity.ok(Map.of(
-                    "mensaje", "Gracias por tu reporte. Nuestro equipo lo revisará pronto",
-                    "id", reporte.getId()
-            ));
-        } catch (IllegalArgumentException e) {
-            return ResponseEntity.badRequest().body(Map.of("error", e.getMessage()));
-        }
+        ReporteProblema reporte = service.crear(dto);
+        String mensaje = messageSource.getMessage("reporte.gracias", null, LocaleContextHolder.getLocale());
+        return ResponseEntity.ok(Map.of("mensaje", mensaje, "id", reporte.getId()));
     }
 
     @GetMapping("/usuario/{usuarioId}")

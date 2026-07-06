@@ -17,4 +17,13 @@ public class PuntoSeguroDTO {
     private String direccion;
     private Integer capacidad;
     private Boolean esOficial;
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+    @Schema(accessMode = Schema.AccessMode.READ_ONLY)
+    private Long idUsuario;
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+    @Schema(accessMode = Schema.AccessMode.READ_ONLY)
+    private Boolean sugerido;
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+    @Schema(accessMode = Schema.AccessMode.READ_ONLY)
+    private Boolean propio;
 }

@@ -27,7 +27,7 @@ public class FaqPreguntaService {
 
     public FaqPreguntaDTO obtenerPorId(Long id) {
         return repository.findById(id).map(this::toDTO)
-                .orElseThrow(() -> new RuntimeException("FAQ no encontrada: " + id));
+                .orElseThrow(() -> new RuntimeException("faq.no.encontrada"));
     }
 
     public FaqPreguntaDTO crear(FaqPreguntaDTO dto) {
@@ -36,7 +36,7 @@ public class FaqPreguntaService {
 
     public FaqPreguntaDTO actualizar(Long id, FaqPreguntaDTO dto) {
         FaqPregunta e = repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("FAQ no encontrada: " + id));
+                .orElseThrow(() -> new RuntimeException("faq.no.encontrada"));
         e.setPregunta(dto.getPregunta());
         e.setRespuesta(dto.getRespuesta());
         e.setCategoria(dto.getCategoria());

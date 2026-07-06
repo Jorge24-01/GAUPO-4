@@ -5,8 +5,12 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import com.Safe.Link.entities.Usuario;
+import com.Safe.Link.repositories.UsuarioRepository;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -18,10 +22,12 @@ import java.util.List;
 public class JwtFilter extends OncePerRequestFilter {
 
     private final JwtUtil jwtUtil;
+    private final UsuarioRepository usuarioRepository;
 
     @Override
     protected boolean shouldNotFilter(HttpServletRequest request) {
-        return isPublicPath(getRequestPath(request));
+        String path = getRequestPath(request);
+        return isPublicPath(path) || isPublicGet(request.getMethod(), path);
     }
 
     @Override
@@ -36,9 +42,11 @@ public class JwtFilter extends OncePerRequestFilter {
             String token = header.substring(7);
             if (jwtUtil.isTokenValid(token)){
                 String correo = jwtUtil.extractCorreo(token);
-                UsernamePasswordAuthenticationToken auth =
-                        new UsernamePasswordAuthenticationToken(correo, null, List.of());
-                SecurityContextHolder.getContext().setAuthentication(auth);
+                usuarioRepository.findByCorreo(correo).ifPresent(usuario -> {
+                    UsernamePasswordAuthenticationToken auth =
+                            new UsernamePasswordAuthenticationToken(correo, null, authorities(usuario));
+                    SecurityContextHolder.getContext().setAuthentication(auth);
+                });
             }
         }
         chain.doFilter(request,response);
@@ -58,8 +66,34 @@ public class JwtFilter extends OncePerRequestFilter {
                 || path.equals("/api/usuarios/login/")
                 || path.equals("/api/usuarios/registro")
                 || path.equals("/api/usuarios/registro/")
+                || path.equals("/api/asistente/preguntar")
+                || path.equals("/api/asistente/preguntar/")
                 || path.equals("/v3/api-docs")
                 || path.startsWith("/swagger-ui")
                 || path.startsWith("/v3/api-docs/");
+    }
+
+    private boolean isPublicGet(String method, String path) {
+        if (!HttpMethod.GET.matches(method)) {
+            return false;
+        }
+
+        return path.equals("/api/educacion/consejos")
+                || path.startsWith("/api/educacion/consejos/")
+                || path.equals("/api/soporte/faq")
+                || path.startsWith("/api/soporte/faq/")
+                || path.equals("/api/puntos-seguros")
+                || path.equals("/api/puntos-seguros/")
+                || path.matches("^/api/puntos-seguros/\\d+/?$")
+                || path.matches("^/api/puntos-seguros/tipo/[^/]+/?$")
+                || path.equals("/api/refugios/disponible")
+                || path.equals("/api/items-kit/recomendados")
+                || path.equals("/api/emergencia/numeros")
+                || path.startsWith("/api/emergencia/numeros/");
+    }
+
+    private List<SimpleGrantedAuthority> authorities(Usuario usuario) {
+        String tipoUsuario = usuario.getTipo_usuario() == null ? "" : usuario.getTipo_usuario().trim().toUpperCase();
+        return List.of(new SimpleGrantedAuthority("ROLE_" + tipoUsuario));
     }
 }

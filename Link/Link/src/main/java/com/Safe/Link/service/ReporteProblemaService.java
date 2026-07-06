@@ -16,10 +16,10 @@ public class ReporteProblemaService {
 
     public ReporteProblema crear(ReporteProblemaDTO dto) {
         if (dto.getDescripcion() == null || dto.getDescripcion().isBlank()) {
-            throw new IllegalArgumentException("La descripción no puede estar vacía.");
+            throw new IllegalArgumentException("reporte.descripcion.vacia");
         }
         if (dto.getDescripcion().length() > 500) {
-            throw new IllegalArgumentException("La descripción no puede superar los 500 caracteres.");
+            throw new IllegalArgumentException("reporte.descripcion.larga");
         }
         ReporteProblema reporte = ReporteProblema.builder()
                 .usuarioId(dto.getUsuarioId())

@@ -26,9 +26,9 @@ public class RefugioService {
 
     public RefugioDTO create(RefugioDTO dto){
         if (dto.getNombre() == null || dto.getNombre().isBlank())
-            throw new IllegalArgumentException("El nombre es obligatorio");
+            throw new IllegalArgumentException("nombre.obligatorio");
         if (dto.getCapacidadMaxima() == null || dto.getCapacidadMaxima() <=0)
-            throw new IllegalArgumentException("La capacidad es obligatoria");
+            throw new IllegalArgumentException("capacidad.obligatoria");
         Refugio r = new Refugio();
 
         r.setNombre(dto.getNombre());
@@ -44,9 +44,9 @@ public class RefugioService {
 
     public RefugioDTO registrarIngreso(Long id){
         Refugio r = repository.findDisponibleById(id)
-                .orElseThrow(()-> new IllegalArgumentException("Refugio no disponible"));
+                .orElseThrow(()-> new IllegalArgumentException("refugio.no.disponible"));
         if (r.getOcupacionActual() >= r.getCapacidadMaxima())
-            throw new IllegalArgumentException("El refugio esta en su maxima capacidad");
+            throw new IllegalArgumentException("refugio.capacidad.maxima");
         r.setOcupacionActual(r.getOcupacionActual() + 1);
         if (r.getOcupacionActual().equals(r.getCapacidadMaxima()))
             r.setDisponible(false);
@@ -55,13 +55,14 @@ public class RefugioService {
 
     public void delete(Long id){
         if (!repository.existsById(id))
-            throw new IllegalArgumentException("Refugio no encontrado: " + id);
+            throw new IllegalArgumentException("refugio.no.encontrado");
         repository.deleteById(id);
     }
 
     private RefugioDTO toDTO(Refugio e){
         RefugioDTO dto = new RefugioDTO();
         dto.setId(e.getId()); dto.setNombre(e.getNombre());
+        dto.setTipo("refugio");
         dto.setDireccion(e.getDireccion()); dto.setLatitud(e.getLatitud());
         dto.setLongitud(e.getLongitud()); dto.setCapacidadMaxima(e.getCapacidadMaxima());
         dto.setOcupacionActual(e.getOcupacionActual()); dto.setDisponible(e.getDisponible());

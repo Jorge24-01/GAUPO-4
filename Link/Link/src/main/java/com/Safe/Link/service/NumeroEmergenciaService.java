@@ -22,7 +22,7 @@ public class NumeroEmergenciaService {
 
     public NumeroEmergenciaDTO obtenerPorId(Long id) {
         return repository.findById(id).map(this::toDTO)
-                .orElseThrow(() -> new RuntimeException("Número de emergencia no encontrado: " + id));
+                .orElseThrow(() -> new RuntimeException("numero.emergencia.no.encontrado"));
     }
 
     public NumeroEmergenciaDTO crear(NumeroEmergenciaDTO dto) {
@@ -32,7 +32,7 @@ public class NumeroEmergenciaService {
 
     public NumeroEmergenciaDTO actualizar(Long id, NumeroEmergenciaDTO dto) {
         NumeroEmergencia existing = repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Número de emergencia no encontrado: " + id));
+                .orElseThrow(() -> new RuntimeException("numero.emergencia.no.encontrado"));
         existing.setNombre(dto.getNombre());
         existing.setNumero(dto.getNumero());
         existing.setDescripcion(dto.getDescripcion());

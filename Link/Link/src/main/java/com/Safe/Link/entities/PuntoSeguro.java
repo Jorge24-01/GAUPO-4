@@ -31,4 +31,7 @@ public class PuntoSeguro {
     private Integer capacidad;
     @Column(name = "es_oficial", nullable = false)
     private Boolean esOficial;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_usuario")
+    private Usuario usuario;
 }

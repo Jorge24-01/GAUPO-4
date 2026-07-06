@@ -18,6 +18,9 @@ public class ConsejoPreventivo {
     @Column(nullable = false, columnDefinition = "TEXT")
     private String contenido;
 
+    @Column(name = "contenido_en", columnDefinition = "TEXT")
+    private String contenidoEn;
+
     @Column(name = "tipo_desastre", length = 50)
     private String tipoDesastre;
 

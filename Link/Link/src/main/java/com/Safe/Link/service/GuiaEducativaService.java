@@ -46,7 +46,7 @@ public class GuiaEducativaService {
 
     public GuiaEducativaDTO obtenerPorId(Long id) {
         return repository.findById(id).map(this::toDTO)
-                .orElseThrow(() -> new RuntimeException("Guía no encontrada: " + id));
+                .orElseThrow(() -> new RuntimeException("guia.no.encontrada"));
     }
 
     public GuiaEducativaDTO crear(GuiaEducativaDTO dto) {
@@ -55,7 +55,7 @@ public class GuiaEducativaService {
 
     public GuiaEducativaDTO actualizar(Long id, GuiaEducativaDTO dto) {
         GuiaEducativa e = repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Guía no encontrada: " + id));
+                .orElseThrow(() -> new RuntimeException("guia.no.encontrada"));
         e.setTitulo(dto.getTitulo());
         e.setContenido(dto.getContenido());
         e.setCategoria(dto.getCategoria());

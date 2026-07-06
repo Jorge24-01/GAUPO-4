@@ -4,6 +4,7 @@ import com.Safe.Link.DTO.ConsejoPreventivoDTO;
 import com.Safe.Link.entities.ConsejoPreventivo;
 import com.Safe.Link.repositories.ConsejoPreventivoRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -34,15 +35,19 @@ public class ConsejoPreventivoService {
     }
 
     private ConsejoPreventivoDTO toDTO(ConsejoPreventivo e) {
+        boolean ingles = "en".equalsIgnoreCase(LocaleContextHolder.getLocale().getLanguage());
+        String contenidoResuelto = (ingles && e.getContenidoEn() != null && !e.getContenidoEn().isBlank())
+                ? e.getContenidoEn()
+                : e.getContenido();
         return ConsejoPreventivoDTO.builder()
-                .id(e.getId()).contenido(e.getContenido())
+                .id(e.getId()).contenido(contenidoResuelto).contenidoEn(e.getContenidoEn())
                 .tipoDesastre(e.getTipoDesastre()).categoria(e.getCategoria())
                 .ordenVisualizacion(e.getOrdenVisualizacion()).build();
     }
 
     private ConsejoPreventivo toEntity(ConsejoPreventivoDTO dto) {
         return ConsejoPreventivo.builder()
-                .contenido(dto.getContenido()).tipoDesastre(dto.getTipoDesastre())
+                .contenido(dto.getContenido()).contenidoEn(dto.getContenidoEn()).tipoDesastre(dto.getTipoDesastre())
                 .categoria(dto.getCategoria()).ordenVisualizacion(dto.getOrdenVisualizacion()).build();
     }
 }

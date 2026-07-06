@@ -22,14 +22,14 @@ public class NotificacionService {
 
     public List<NotifiacionDTO> getNoLeidas(Long idUsuario){
         if (!usuarioRepository.existsById(idUsuario))
-            throw new IllegalArgumentException("Usuario no encontrado: " + idUsuario);
+            throw new IllegalArgumentException("usuario.no.encontrado");
         return repository.findNoLeidasByUsuario(idUsuario).stream()
                 .map(this::toDTO).collect(Collectors.toList());
     }
 
     public NotifiacionDTO create(NotifiacionDTO dto){
         Usuario usuarioDestino = usuarioRepository.findById(dto.getIdUsuarioDestino())
-                .orElseThrow(() -> new IllegalArgumentException("Usuario no encontrado: " + dto.getIdUsuarioDestino()));
+                .orElseThrow(() -> new IllegalArgumentException("usuario.no.encontrado"));
 
         List<String> tiposValidos = List.of(
                 "sismo",
@@ -48,7 +48,7 @@ public class NotificacionService {
         );
 
         if (dto.getTipo() == null || !tiposValidos.contains(dto.getTipo()))
-            throw new IllegalArgumentException("Tipo de notificacion invalido. Valores permitidos: " + tiposValidos);
+            throw new IllegalArgumentException("notificacion.tipo.invalido");
 
         Notificaciones n = new Notificaciones();
         n.setUsuarioDestino(usuarioDestino);
@@ -58,7 +58,7 @@ public class NotificacionService {
 
         if (dto.getIdAlerta() != null){
             n.setAlerta(alertaRepository.findById(dto.getIdAlerta())
-                    .orElseThrow(()->new IllegalArgumentException("Alerta no encontrada: " + dto.getIdAlerta())));
+                    .orElseThrow(()->new IllegalArgumentException("alerta.no.encontrada")));
         }
 
         return toDTO(repository.save(n));
@@ -66,16 +66,16 @@ public class NotificacionService {
 
     public NotifiacionDTO marcarLeido(Long id){
         Notificaciones n = repository.findById(id)
-                .orElseThrow(()-> new IllegalArgumentException("Notificacion no encontrada" + id));
+                .orElseThrow(()-> new IllegalArgumentException("notificacion.no.encontrada"));
         if (n.getLeido())
-            throw new IllegalArgumentException("La notificacion ya fue leida anteriormente");
+            throw new IllegalArgumentException("notificacion.ya.leida");
         n.setLeido(true);
         return toDTO(repository.save(n));
     }
 
     public void delete(Long id){
         if (!repository.existsById(id))
-            throw new IllegalArgumentException("Notificacion no encontrada: " + id);
+            throw new IllegalArgumentException("notificacion.no.encontrada");
         repository.deleteById(id);
     }
 

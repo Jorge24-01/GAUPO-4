@@ -17,14 +17,14 @@ public class KitEmergenciaService {
 
     public KitEmergenciDTO getByUsuario(Long idUsuario){
         return toDTO(repository.findByUsuarioId(idUsuario)
-                .orElseThrow(()->new IllegalArgumentException("No tienes un kit registrado")));
+                .orElseThrow(()->new IllegalArgumentException("kit.no.registrado")));
     }
 
     public KitEmergenciDTO create(KitEmergenciDTO dto){
         Usuario usuario = usuarioRepository.findById(dto.getIdUsuario())
-                .orElseThrow(()->new IllegalArgumentException("Usuario no encontrado"));
+                .orElseThrow(()->new IllegalArgumentException("usuario.no.encontrado"));
         if (repository.findByUsuarioId(dto.getIdUsuario()).isPresent())
-            throw new IllegalArgumentException("El usuario ya tiene un kit registrado");
+            throw new IllegalArgumentException("kit.duplicado");
         KitEmergencia k = new KitEmergencia();
         k.setUsuario(usuario); k.setPorcentaje(0.0);
         return toDTO(repository.save(k));
@@ -32,20 +32,20 @@ public class KitEmergenciaService {
 
     public KitEmergenciDTO update(Long id, KitEmergenciDTO dto){
         KitEmergencia k = repository.findById(id)
-                .orElseThrow(()->new IllegalArgumentException("Kit no encontrado: " + id));
+                .orElseThrow(()->new IllegalArgumentException("kit.no.encontrado"));
         k.setFechaUltimaRevision(dto.getFechaUltimaRevision());
         return toDTO(repository.save(k));
     }
 
     public void delete(Long id){
         if (!repository.existsById(id))
-            throw new IllegalArgumentException("Kit no encontrado: " + id);
+            throw new IllegalArgumentException("kit.no.encontrado");
         repository.deleteById(id);
     }
 
     public String getRecomendacion(Long idKit){
         KitEmergencia kit = repository.findById(idKit)
-                .orElseThrow(()->new IllegalArgumentException("Kit no encontrado: " + idKit));
+                .orElseThrow(()->new IllegalArgumentException("kit.no.encontrado"));
         double porcentaje = kit.getPorcentaje() != null ? kit.getPorcentaje() : 0.0;
         if (porcentaje>=80)
             return "Tu kit esta bien preparado. Revisa las fechas de vencimiento de tus items.";

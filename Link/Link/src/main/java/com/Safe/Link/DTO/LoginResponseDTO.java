@@ -11,6 +11,7 @@ public class LoginResponseDTO {
     @Schema(accessMode = Schema.AccessMode.READ_ONLY)
     private Long id;
     private String nombre;
+    private String apellido;
     private String correo;
     private String tipoUsuario;
     private String token;

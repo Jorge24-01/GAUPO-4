@@ -19,19 +19,19 @@ public class RutaEvacuacionService {
 
     public List<RutaEvacuacionDTO>getByPuntoDestino(Long idPunto){
         if (!puntoRepo.existsById(idPunto))
-            throw new IllegalArgumentException("Punto seguro no encontrado: " +idPunto);
+            throw new IllegalArgumentException("punto.seguro.no.encontrado");
         return repository.findByPuntoDestino(idPunto).stream()
                 .map(this::toDTO).collect(Collectors.toList());
     }
 
     public RutaEvacuacionDTO create(RutaEvacuacionDTO dto){
         if (dto.getNombreRuta() == null || dto.getNombreRuta().isBlank())
-            throw new IllegalArgumentException("El nombre de la ruta es obligatorio");
+            throw new IllegalArgumentException("ruta.nombre.obligatorio");
         if (dto.getIdPuntoDestino() == null)
-            throw new IllegalArgumentException("El punto destino es obligatorio");
+            throw new IllegalArgumentException("ruta.destino.obligatorio");
 
         PuntoSeguro puntoDestino = puntoRepo.findById(dto.getIdPuntoDestino())
-                .orElseThrow(()->new IllegalArgumentException("Punto seguro no encontrado"));
+                .orElseThrow(()->new IllegalArgumentException("punto.seguro.no.encontrado"));
 
         RutaEvacuacion e = new RutaEvacuacion();
         e.setPuntoDestino(puntoDestino);
@@ -42,7 +42,7 @@ public class RutaEvacuacionService {
 
     public RutaEvacuacionDTO update(Long id, RutaEvacuacionDTO dto){
         RutaEvacuacion e = repository.findById(id)
-                .orElseThrow(()->new IllegalArgumentException("Ruta no encontrada: " + id));
+                .orElseThrow(()->new IllegalArgumentException("ruta.no.encontrada"));
         e.setNombreRuta(dto.getNombreRuta()); e.setDescripcion(dto.getDescripcion());
         e.setDistanciakm(dto.getDistanciaKm());
         return toDTO(repository.save(e));
@@ -50,7 +50,7 @@ public class RutaEvacuacionService {
 
     public void delete(Long id){
         if (!repository.existsById(id))
-            throw new IllegalArgumentException("Ruta no encontrada: " + id);
+            throw new IllegalArgumentException("ruta.no.encontrada");
         repository.deleteById(id);
     }
 

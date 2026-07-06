@@ -20,6 +20,11 @@ public class ItemKitController {
         return ResponseEntity.ok(service.getByKit(idKit));
     }
 
+    @GetMapping("/recomendados")
+    public ResponseEntity<List<ItemKitDTO>>getRecomendados(){
+        return ResponseEntity.ok(service.getRecomendados());
+    }
+
     @GetMapping("/categoria/{categoria}")
     public ResponseEntity<List<ItemKitDTO>>getByCategoria(@PathVariable String categoria){
        return ResponseEntity.ok(service.getByCategoria(categoria));

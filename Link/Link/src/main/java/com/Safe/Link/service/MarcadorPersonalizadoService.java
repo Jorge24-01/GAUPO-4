@@ -19,16 +19,16 @@ public class MarcadorPersonalizadoService {
 
     public List<MarcadorPersonalizadoDTO>getByUsuario(Long idUsuario){
         if (!usuarioRepository.existsById(idUsuario))
-            throw new IllegalArgumentException("Usuario no encontrado" + idUsuario);
+            throw new IllegalArgumentException("usuario.no.encontrado");
         return repository.findByUsuarioId(idUsuario).stream()
                 .map(this::toDTO).collect(Collectors.toList());
     }
 
     public MarcadorPersonalizadoDTO create(MarcadorPersonalizadoDTO dto){
         if (dto.getNombre() == null || dto.getNombre().isBlank())
-            throw new IllegalArgumentException("El nombre del marcador es obligatorio");
+            throw new IllegalArgumentException("marcador.nombre.obligatorio");
         Usuario usuario = usuarioRepository.findById(dto.getIdUsuario())
-                .orElseThrow(()->new IllegalArgumentException("Usuario no encontrado"));
+                .orElseThrow(()->new IllegalArgumentException("usuario.no.encontrado"));
         MarcadorPersonalizado e = new MarcadorPersonalizado();
         e.setUsuario(usuario); e.setNombre(dto.getNombre());
         e.setLatitud(dto.getLatitud()); e.setLongitud(dto.getLongitud());
@@ -38,7 +38,7 @@ public class MarcadorPersonalizadoService {
 
     public MarcadorPersonalizadoDTO update(Long id, MarcadorPersonalizadoDTO dto){
         MarcadorPersonalizado m = repository.findById(id)
-                .orElseThrow(()->new IllegalArgumentException("Marcador no encontrado: " + id));
+                .orElseThrow(()->new IllegalArgumentException("marcador.no.encontrado"));
         m.setNombre(dto.getNombre());
         m.setLatitud(dto.getLatitud());
         m.setLongitud(dto.getLongitud());
@@ -48,7 +48,7 @@ public class MarcadorPersonalizadoService {
 
     public void delete(Long id){
         if (!repository.existsById(id))
-            throw new IllegalArgumentException("Marcador no encontrado: " + id);
+            throw new IllegalArgumentException("marcador.no.encontrado");
         repository.deleteById(id);
     }
 

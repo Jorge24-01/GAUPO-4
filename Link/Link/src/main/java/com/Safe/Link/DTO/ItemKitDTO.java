@@ -14,6 +14,7 @@ public class ItemKitDTO {
 
     private Long idKit;
     private String nombreItem;
+    private String nombreItemEn;
     private String categoria;
     private Integer cantidadRecomendada;
     private Boolean tieneItem;

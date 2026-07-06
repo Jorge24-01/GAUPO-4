@@ -5,6 +5,7 @@ import com.Safe.Link.service.PuntoSeguroService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -28,6 +29,28 @@ public class PuntoSeguroController {
     @GetMapping("/tipo/{tipo}")
     public ResponseEntity<List<PuntoSeguroDTO>>getByTipo(@PathVariable String tipo){
         return ResponseEntity.ok(service.getBytipo(tipo));
+    }
+
+    @GetMapping("/usuario/{idUsuario}/mapa")
+    public ResponseEntity<List<PuntoSeguroDTO>> getMapaUsuario(@PathVariable Long idUsuario,
+                                                               Authentication authentication){
+        return ResponseEntity.ok(service.getMapaUsuario(idUsuario, authentication.getName()));
+    }
+
+    @PostMapping("/usuario/{idUsuario}")
+    public ResponseEntity<PuntoSeguroDTO> createUsuario(@PathVariable Long idUsuario,
+                                                        @RequestBody PuntoSeguroDTO dto,
+                                                        Authentication authentication){
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(service.createUsuario(idUsuario, dto, authentication.getName()));
+    }
+
+    @DeleteMapping("/usuario/{idUsuario}/{idPunto}")
+    public ResponseEntity<Void> deleteUsuario(@PathVariable Long idUsuario,
+                                              @PathVariable Long idPunto,
+                                              Authentication authentication){
+        service.deleteUsuario(idUsuario, idPunto, authentication.getName());
+        return ResponseEntity.noContent().build();
     }
 
     @GetMapping("/{id}")
