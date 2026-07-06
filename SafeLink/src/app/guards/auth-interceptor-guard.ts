@@ -39,7 +39,7 @@ export const adminGuard: CanActivateFn = (_route, state) => {
 
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
   const token = localStorage.getItem(Auth.TOKEN_KEY);
-  const esExterno = !req.url.includes('localhost:8080');
+  const esExterno = !req.url.includes('https://safelink-puvx.onrender.com');
   const idioma = localStorage.getItem('safelink-lang') ?? 'es-419';
 
   if (token && !esExterno) {
